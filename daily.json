@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-09-27T02:41:23.547722"
+    "last_updated": "2026-09-27T02:58:04.597922"
   },
   "airing_today": [
     {
@@ -8,28 +8,28 @@
       "title_romaji": "ONE PIECE",
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
       "next_ep": 1180,
-      "next_ep_time": 61703
+      "next_ep_time": 60584
     },
     {
       "title_english": "Mushoku Tensei: Jobless Reincarnation Season 3",
       "title_romaji": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178789-hNXjKFzUq7mk.jpg",
       "next_ep": 14,
-      "next_ep_time": 49943
+      "next_ep_time": 48824
     },
     {
       "title_english": "You and I Are Polar Opposites Season 2",
       "title_romaji": "Seihantai na Kimi to Boku 2nd Season",
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210031-TppgcHZh46LY.jpg",
       "next_ep": 12,
-      "next_ep_time": 39140
+      "next_ep_time": 38021
     },
     {
       "title_english": "Nijusseiki Denki Mokuroku: Eureka Evrika",
       "title_romaji": "Nijusseiki Denki Mokuroku: Eureka Evrika",
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx103303-IF43hFJPPv2Y.png",
       "next_ep": 13,
-      "next_ep_time": 60740
+      "next_ep_time": 59621
     }
   ],
   "weekly_watchlist": [
@@ -39,7 +39,7 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
       "status": "RELEASING",
       "next_ep": 1180,
-      "next_ep_time": 61703
+      "next_ep_time": 60584
     },
     {
       "title_english": "One Piece",
@@ -63,7 +63,7 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178789-hNXjKFzUq7mk.jpg",
       "status": "RELEASING",
       "next_ep": 14,
-      "next_ep_time": 49943
+      "next_ep_time": 48824
     },
     {
       "title_english": "Re:ZERO -Starting Life in Another World- Season 4",
@@ -71,7 +71,7 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg",
       "status": "RELEASING",
       "next_ep": 19,
-      "next_ep_time": 316343
+      "next_ep_time": 315224
     },
     {
       "title_english": "Blue Lock",
@@ -87,7 +87,7 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185874-aU3e6tBT6wwA.jpg",
       "status": "RELEASING",
       "next_ep": 9,
-      "next_ep_time": 1961542
+      "next_ep_time": 1960423
     },
     {
       "title_english": "The Fragrant Flower Blooms With Dignity",

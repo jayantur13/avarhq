@@ -1,0 +1,419 @@
+{
+  "year": 2027,
+  "data": [
+    {
+      "id": 198966,
+      "title": {
+        "english": null,
+        "romaji": "Dandadan 3rd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx198966-9Ji1GwIyRiiu.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Science SARU"
+          }
+        ]
+      }
+    },
+    {
+      "id": 181641,
+      "title": {
+        "english": null,
+        "romaji": "Tokidoki Bosotto Rossiya-go de Dereru Tonari no Alya-san Season 2"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx181641-4BnzXGnA7CJL.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Doga Kobo"
+          }
+        ]
+      }
+    },
+    {
+      "id": 171952,
+      "title": {
+        "english": null,
+        "romaji": "Kage no Jitsuryokusha ni Naritakute!: Zankyou-hen"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171952-uB8CTTCBI1u5.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "MOVIE",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Nexus"
+          }
+        ]
+      }
+    },
+    {
+      "id": 178031,
+      "title": {
+        "english": "Delicious in Dungeon Season 2",
+        "romaji": "Dungeon Meshi 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178031-XNWYP6Qf18bB.png"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 10
+      },
+      "format": "ONA",
+      "studios": {
+        "nodes": [
+          {
+            "name": "TRIGGER"
+          }
+        ]
+      }
+    },
+    {
+      "id": 209939,
+      "title": {
+        "english": null,
+        "romaji": "Sousou no Frieren 3rd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209939-g2Njkml1rheG.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 10
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "MADHOUSE"
+          }
+        ]
+      }
+    },
+    {
+      "id": 177704,
+      "title": {
+        "english": null,
+        "romaji": "MASHLE: Sanma Taisou Shinkakusha Saishuu Shiken-hen"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx177704-y10Nw7MUXCHD.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 1
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "A-1 Pictures"
+          }
+        ]
+      }
+    },
+    {
+      "id": 189323,
+      "title": {
+        "english": "Shangri-La Frontier Season 3",
+        "romaji": "Shangri-La Frontier 3rd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189323-gHXhqIOBUY8F.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 1
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "C2C"
+          }
+        ]
+      }
+    },
+    {
+      "id": 211496,
+      "title": {
+        "english": "Kagurabachi",
+        "romaji": "Kagurabachi"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx211496-zBucCHCPFFgy.png"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 4
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Cypic"
+          }
+        ]
+      }
+    },
+    {
+      "id": 179068,
+      "title": {
+        "english": "Omniscient Reader",
+        "romaji": "Zenchiteki na Dokusha no Shiten kara"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx179068-wlmOf8c4HnXf.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": []
+      }
+    },
+    {
+      "id": 169579,
+      "title": {
+        "english": null,
+        "romaji": "Sekai Saikou no Ansatsusha, Isekai Kizoku ni Tensei suru 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx169579-KxMH0iq7jlPr.png"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 1
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "SILVER LINK."
+          }
+        ]
+      }
+    },
+    {
+      "id": 204363,
+      "title": {
+        "english": "SAKAMOTO DAYS Season 2",
+        "romaji": "SAKAMOTO DAYS 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204363-rDHWhXs48Ygl.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 1
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "TMS Entertainment"
+          }
+        ]
+      }
+    },
+    {
+      "id": 187924,
+      "title": {
+        "english": null,
+        "romaji": "Kono Subarashii Sekai ni Shukufuku wo! 4"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx187924-Jcepw4CE9iI9.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "ENGI"
+          }
+        ]
+      }
+    },
+    {
+      "id": 186822,
+      "title": {
+        "english": "The Guy She Was Interested In Wasn't a Guy At All",
+        "romaji": "Ki ni Natteru Hito ga Otoko ja Nakatta"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx186822-9zsR5NtOP0yJ.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 1
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "CloverWorks"
+          }
+        ]
+      }
+    },
+    {
+      "id": 174871,
+      "title": {
+        "english": null,
+        "romaji": "Haikyuu!!: VS Chiisana Kyojin"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx174871-NQ2LbAn6RBCd.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "MOVIE",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Production I.G"
+          }
+        ]
+      }
+    },
+    {
+      "id": 185657,
+      "title": {
+        "english": "Skip and Loafer Season 2",
+        "romaji": "Skip to Loafer 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185657-oj1LEuoH2Hay.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 4
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "P.A.WORKS"
+          }
+        ]
+      }
+    },
+    {
+      "id": 199185,
+      "title": {
+        "english": null,
+        "romaji": "Tate no Yuusha no Nariagari Season 5"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199185-1svTWhAN0Orh.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Kinema Citrus"
+          }
+        ]
+      }
+    },
+    {
+      "id": 181951,
+      "title": {
+        "english": null,
+        "romaji": "Ookami to Koushinryou: MERCHANT MEETS THE WISE WOLF 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx181951-KbyoxJX2pQy2.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Passione"
+          }
+        ]
+      }
+    },
+    {
+      "id": 197620,
+      "title": {
+        "english": "Sekiro: No Defeat",
+        "romaji": "SEKIRO: NO DEFEAT"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx197620-COEsbB1otIdR.png"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": 1
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Qzil.la"
+          }
+        ]
+      }
+    },
+    {
+      "id": 217434,
+      "title": {
+        "english": null,
+        "romaji": "Mushoku Tensei III: Isekai Ittara Honki Dasu Part 2"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx217434-xqZNBp5U3hgY.jpg"
+      },
+      "startDate": {
+        "year": 2027,
+        "month": null
+      },
+      "format": "TV",
+      "studios": {
+        "nodes": [
+          {
+            "name": "Studio Bind"
+          }
+        ]
+      }
+    }
+  ]
+}

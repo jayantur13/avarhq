@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "last_updated": "2026-09-29T12:11:20.441250"
+    "last_updated": "2026-09-29T12:21:33.808774"
   },
   "airing_today": [
     {
@@ -14,7 +14,7 @@
       "source": "MANGA",
       "duration": 24,
       "next_ep": 13,
-      "next_ep_time": 21156
+      "next_ep_time": 20510
     }
   ],
   "active_now": [
@@ -30,7 +30,7 @@
       "duration": 24,
       "status": "RELEASING",
       "next_ep": 1181,
-      "next_ep_time": 8321923
+      "next_ep_time": 8321277
     },
     {
       "title_english": "Re:ZERO -Starting Life in Another World- Season 4",
@@ -44,7 +44,7 @@
       "duration": 24,
       "status": "RELEASING",
       "next_ep": 19,
-      "next_ep_time": 109363
+      "next_ep_time": 108717
     },
     {
       "title_english": "BLEACH: Thousand-Year Blood War - The Calamity",
@@ -58,7 +58,7 @@
       "duration": null,
       "status": "RELEASING",
       "next_ep": 9,
-      "next_ep_time": 1754559
+      "next_ep_time": 1753912
     },
     {
       "title_english": "Kusuriya no Hitorigoto 3rd Season",
@@ -72,7 +72,7 @@
       "duration": null,
       "status": "NOT_YET_RELEASED",
       "next_ep": 1,
-      "next_ep_time": 285756
+      "next_ep_time": 285110
     },
     {
       "title_english": "Cyberpunk: Edgerunners 2",
@@ -86,7 +86,7 @@
       "duration": null,
       "status": "NOT_YET_RELEASED",
       "next_ep": 1,
-      "next_ep_time": 1815756
+      "next_ep_time": 1815110
     },
     {
       "title_english": "Tsuihou Sareta Tensei Juukishi wa Game Chishiki de Musou Suru",
@@ -100,7 +100,7 @@
       "duration": 24,
       "status": "RELEASING",
       "next_ep": 14,
-      "next_ep_time": 204521
+      "next_ep_time": 203875
     },
     {
       "title_english": "You and I Are Polar Opposites Season 2",
@@ -114,7 +114,7 @@
       "duration": 24,
       "status": "RELEASING",
       "next_ep": 13,
-      "next_ep_time": 436963
+      "next_ep_time": 436317
     },
     {
       "title_english": "I Want to Love You Till Your Dying Day",
@@ -128,58 +128,10 @@
       "duration": 24,
       "status": "RELEASING",
       "next_ep": 13,
-      "next_ep_time": 21156
+      "next_ep_time": 20510
     }
   ],
   "trending_top10": [
-    {
-      "title_english": "Shingeki no Kyojin",
-      "title_romaji": "Shingeki no Kyojin",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-buvcRTBx4NSm.jpg",
-      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/16498-8jpFCOcDmneX.jpg",
-      "format": "TV",
-      "season": "SPRING",
-      "season_year": 2013,
-      "source": "MANGA",
-      "duration": 24,
-      "average_score": 85,
-      "genres": "Action, Drama, Fantasy, Mystery",
-      "status": "FINISHED",
-      "next_ep": null,
-      "next_ep_time": null
-    },
-    {
-      "title_english": "Demon Slayer: Kimetsu no Yaiba",
-      "title_romaji": "Kimetsu no Yaiba",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg",
-      "banner_image": null,
-      "format": "TV",
-      "season": null,
-      "season_year": 2019,
-      "source": null,
-      "duration": 24,
-      "average_score": 82,
-      "genres": "Action, Adventure, Drama, Fantasy, Supernatural",
-      "status": "FINISHED",
-      "next_ep": null,
-      "next_ep_time": null
-    },
-    {
-      "title_english": "JUJUTSU KAISEN",
-      "title_romaji": "Jujutsu Kaisen",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg",
-      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg",
-      "format": "TV",
-      "season": "FALL",
-      "season_year": 2020,
-      "source": "MANGA",
-      "duration": 24,
-      "average_score": 84,
-      "genres": "Action, Drama, Supernatural",
-      "status": "FINISHED",
-      "next_ep": null,
-      "next_ep_time": null
-    },
     {
       "title_english": "Death Note",
       "title_romaji": "DEATH NOTE",
@@ -226,39 +178,7 @@
       "genres": "Action, Adventure, Comedy, Drama, Fantasy",
       "status": "RELEASING",
       "next_ep": 1181,
-      "next_ep_time": 8321923
-    },
-    {
-      "title_english": "Shingeki no Kyojin Season 2",
-      "title_romaji": "Shingeki no Kyojin Season 2",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg",
-      "banner_image": null,
-      "format": "TV",
-      "season": null,
-      "season_year": 2017,
-      "source": null,
-      "duration": 25,
-      "average_score": 85,
-      "genres": "Action, Drama, Fantasy, Mystery",
-      "status": "FINISHED",
-      "next_ep": null,
-      "next_ep_time": null
-    },
-    {
-      "title_english": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
-      "title_romaji": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
-      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
-      "format": "TV",
-      "season": "SPRING",
-      "season_year": 2009,
-      "source": "MANGA",
-      "duration": 25,
-      "average_score": 90,
-      "genres": "Action, Adventure, Drama, Fantasy",
-      "status": "FINISHED",
-      "next_ep": null,
-      "next_ep_time": null
+      "next_ep_time": 8321277
     },
     {
       "title_english": "Naruto",
@@ -291,51 +211,89 @@
       "status": "FINISHED",
       "next_ep": null,
       "next_ep_time": null
+    },
+    {
+      "title_english": "Re:ZERO -Starting Life in Another World-",
+      "title_romaji": "Re:Zero kara Hajimeru Isekai Seikatsu",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21355-wRVUrGxpvIQQ.jpg",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21355-f9SjOfEJMk5P.jpg",
+      "format": "TV",
+      "season": "SPRING",
+      "season_year": 2016,
+      "source": "LIGHT_NOVEL",
+      "duration": 25,
+      "average_score": 81,
+      "genres": "Action, Adventure, Drama, Fantasy, Psychological, Romance, Thriller",
+      "status": "FINISHED",
+      "next_ep": null,
+      "next_ep_time": null
+    },
+    {
+      "title_english": "NARUTO: Shippuuden",
+      "title_romaji": "NARUTO: Shippuuden",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1735-kGfVm0YqCPcu.png",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1735.jpg",
+      "format": "TV",
+      "season": "WINTER",
+      "season_year": 2007,
+      "source": "MANGA",
+      "duration": 23,
+      "average_score": 82,
+      "genres": "Action, Adventure, Comedy, Drama, Fantasy, Supernatural",
+      "status": "FINISHED",
+      "next_ep": null,
+      "next_ep_time": null
+    },
+    {
+      "title_english": "Steins;Gate",
+      "title_romaji": "Steins;Gate",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx9253-tIUXF2gfU8Sg.jpg",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n9253-JIhmKgBKsWUN.jpg",
+      "format": "TV",
+      "season": "SPRING",
+      "season_year": 2011,
+      "source": "VISUAL_NOVEL",
+      "duration": 24,
+      "average_score": 89,
+      "genres": "Drama, Psychological, Sci-Fi, Thriller",
+      "status": "FINISHED",
+      "next_ep": null,
+      "next_ep_time": null
+    },
+    {
+      "title_english": "Black Clover",
+      "title_romaji": "Black Clover",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx97940-fyh8o7gNbha0.png",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/97940-1URQdQ4U1a0b.jpg",
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 2017,
+      "source": "MANGA",
+      "duration": 24,
+      "average_score": 79,
+      "genres": "Action, Adventure, Comedy, Fantasy",
+      "status": "FINISHED",
+      "next_ep": null,
+      "next_ep_time": null
+    },
+    {
+      "title_english": "Bleach",
+      "title_romaji": "BLEACH",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx269-d2GmRkJbMopq.png",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/269-08ar2HJOUAuL.jpg",
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 2004,
+      "source": "MANGA",
+      "duration": 24,
+      "average_score": 79,
+      "genres": "Action, Adventure, Supernatural",
+      "status": "FINISHED",
+      "next_ep": null,
+      "next_ep_time": null
     }
   ],
   "binge_profiles": [
-    {
-      "title_english": "Shingeki no Kyojin",
-      "title_romaji": "Shingeki no Kyojin",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-buvcRTBx4NSm.jpg",
-      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/16498-8jpFCOcDmneX.jpg",
-      "format": "TV",
-      "season": "SPRING",
-      "season_year": 2013,
-      "source": "MANGA",
-      "duration": 24,
-      "description": "Several hundred years ago, humans were nearly exterminated by titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest of titans.\r\nFlash forward to the present and the city has not seen a titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a colossal titan that appears out of thin air. As the smaller titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single titan and take revenge for all of mankind.\r\n(Source: MangaHelpers)",
-      "episodes": 25,
-      "studios": "WIT STUDIO"
-    },
-    {
-      "title_english": "Demon Slayer: Kimetsu no Yaiba",
-      "title_romaji": "Kimetsu no Yaiba",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg",
-      "banner_image": null,
-      "format": "TV",
-      "season": null,
-      "season_year": 2019,
-      "source": null,
-      "duration": 24,
-      "description": "It is the Taisho Period in Japan. Tanjiro, a kindhearted boy who sells charcoal for a living, finds his family slaughtered by a demon. To make matters worse, his younger sister Nezuko, the sole survivor, has been transformed into a demon herself. Though devastated by this grim reality, Tanjiro resolves to become a “demon slayer” so that he can turn his sister back into a human, and kill the demon that massacred his family.\n\n(Source: Crunchyroll)",
-      "episodes": 26,
-      "studios": "ufotable"
-    },
-    {
-      "title_english": "JUJUTSU KAISEN",
-      "title_romaji": "Jujutsu Kaisen",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg",
-      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg",
-      "format": "TV",
-      "season": "FALL",
-      "season_year": 2020,
-      "source": "MANGA",
-      "duration": 24,
-      "description": "A boy fights... for \"the right death.\"\n\nHardship, regret, shame: the negative feelings that humans feel become Curses that lurk in our everyday lives. The Curses run rampant throughout the world, capable of leading people to terrible misfortune and even death. What's more, the Curses can only be exorcised by another Curse.\n\nItadori Yuji is a boy with tremendous physical strength, though he lives a completely ordinary high school life. One day, to save a friend who has been attacked by Curses, he eats the finger of the Double-Faced Specter, taking the Curse into his own soul. From then on, he shares one body with the Double-Faced Specter. Guided by the most powerful of sorcerers, Gojou Satoru, Itadori is admitted to the Tokyo Metropolitan Technical High School of Sorcery, an organization that fights the Curses... and thus begins the heroic tale of a boy who became a Curse to exorcise a Curse, a life from which he could never turn back.\n\n(Source: Crunchyroll)\n\nNote: The first episode received an early web premiere on September 19th, 2020. The regular TV broadcast started on October 3rd, 2020.",
-      "episodes": 24,
-      "studios": "MAPPA"
-    },
     {
       "title_english": "Death Note",
       "title_romaji": "DEATH NOTE",
@@ -363,16 +321,51 @@
       "description": "A Hunter is one who travels the world doing all sorts of dangerous tasks. From capturing criminals to searching deep within uncharted lands for any lost treasures. Gon is a young boy whose father disappeared long ago, being a Hunter. He believes if he could also follow his father's path, he could one day reunite with him.\nAfter becoming 12, Gon leaves his home and takes on the task of entering the Hunter exam, notorious for its low success rate and high probability of death to become an official Hunter. He befriends the revenge-driven Kurapika, the doctor-to-be Leorio and the rebellious ex-assassin Killua in the exam, with their friendship prevailing throughout the many trials and threats they come upon taking on the dangerous career of a Hunter.",
       "episodes": 148,
       "studios": "MADHOUSE"
+    },
+    {
+      "title_english": "Naruto",
+      "title_romaji": "NARUTO",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-dE6UHbFFg1A5.jpg",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20-HHxhPj5JD13a.jpg",
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 2002,
+      "source": "MANGA",
+      "duration": 23,
+      "description": "Naruto Uzumaki, a hyperactive and knuckle-headed ninja, lives in Konohagakure, the Hidden Leaf village. Moments prior to his birth, a huge demon known as the Kyuubi, the Nine-tailed Fox, attacked Konohagakure and wreaked havoc. In order to put an end to the Kyuubi's rampage, the leader of the village, the 4th Hokage, sacrificed his life and sealed the monstrous beast inside the newborn Naruto. \nShunned because of the presence of the Kyuubi inside him, Naruto struggles to find his place in the village. He strives to become the Hokage of Konohagakure, and he meets many friends and foes along the way. \n(Source: MAL Rewrite)",
+      "episodes": 220,
+      "studios": "Studio Pierrot"
+    },
+    {
+      "title_english": "Sword Art Online",
+      "title_romaji": "Sword Art Online",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-SxYDUzdr9rh2.jpg",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11757-TlEEV9weG4Ag.jpg",
+      "format": "TV",
+      "season": "SUMMER",
+      "season_year": 2012,
+      "source": "LIGHT_NOVEL",
+      "duration": 23,
+      "description": "In the near future, a Virtual Reality Massive Multiplayer Online Role-Playing Game (VRMMORPG) called Sword Art Online has been released where players control their avatars with their bodies using a piece of technology called Nerve Gear. One day, players discover they cannot log out, as the game creator is holding them captive unless they reach the 100th floor of the game's tower and defeat the final boss. However, if they die in the game, they die in real life. Their struggle for survival starts now...\n(Source: Crunchyroll)",
+      "episodes": 25,
+      "studios": "A-1 Pictures"
+    },
+    {
+      "title_english": "Re:ZERO -Starting Life in Another World-",
+      "title_romaji": "Re:Zero kara Hajimeru Isekai Seikatsu",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21355-wRVUrGxpvIQQ.jpg",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21355-f9SjOfEJMk5P.jpg",
+      "format": "TV",
+      "season": "SPRING",
+      "season_year": 2016,
+      "source": "LIGHT_NOVEL",
+      "duration": 25,
+      "description": "In the story, Subaru Natsuki is an ordinary high school student who is lost in an alternate world, where he is rescued by a beautiful, silver-haired girl. He stays near her to return the favor, but the destiny she is burdened with is more than Subaru can imagine. Enemies attack one by one, and both of them are killed. He then finds out he has the power to rewind death, back to the time he first came to this world. But only he remembers what has happened since.\n\n(Source: Anime News Network)\n\nNotes:\n- The first episode aired with a runtime of ~50 minutes as opposed to the standard 25 minute long episode.\n- In the Winter 2020 season, Re:ZERO was rebroadcast and re-edited to fit into an hour time-slot. This edit included the first OVA and added slight modifications to certain scenes throughout. It also added an additional scene at the end of the final episode.",
+      "episodes": 25,
+      "studios": "WHITE FOX"
     }
   ],
   "birthdays": [
-    {
-      "name": "Shinju Inui",
-      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b207937-ytYjcNtNX77K.png",
-      "favorites": 594,
-      "title_english": "Sono Bisque Doll wa Koi wo Suru",
-      "title_romaji": "Sono Bisque Doll wa Koi wo Suru"
-    },
     {
       "name": "Minato Amamiya",
       "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b354441-KvKq0Zb8K1nd.jpg",

@@ -1,45 +1,34 @@
 {
   "metadata": {
-    "last_updated": "2026-09-27T02:58:04.597922"
+    "last_updated": "2026-09-29T11:38:51.188158"
   },
   "airing_today": [
     {
-      "title_english": "ONE PIECE",
-      "title_romaji": "ONE PIECE",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
-      "next_ep": 1180,
-      "next_ep_time": 60584
-    },
-    {
-      "title_english": "Mushoku Tensei: Jobless Reincarnation Season 3",
-      "title_romaji": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178789-hNXjKFzUq7mk.jpg",
-      "next_ep": 14,
-      "next_ep_time": 48824
-    },
-    {
-      "title_english": "You and I Are Polar Opposites Season 2",
-      "title_romaji": "Seihantai na Kimi to Boku 2nd Season",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210031-TppgcHZh46LY.jpg",
-      "next_ep": 12,
-      "next_ep_time": 38021
-    },
-    {
-      "title_english": "Nijusseiki Denki Mokuroku: Eureka Evrika",
-      "title_romaji": "Nijusseiki Denki Mokuroku: Eureka Evrika",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx103303-IF43hFJPPv2Y.png",
+      "title_english": "I Want to Love You Till Your Dying Day",
+      "title_romaji": "Kimi ga Shinu made Koi wo Shitai",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx187260-WW5RBa5NINRP.jpg",
       "next_ep": 13,
-      "next_ep_time": 59621
+      "next_ep_time": 23107,
+      "format": "TV",
+      "season": "SUMMER",
+      "season_year": 2026,
+      "source": "MANGA",
+      "duration": 24
     }
   ],
-  "weekly_watchlist": [
+  "active_now": [
     {
       "title_english": "ONE PIECE",
       "title_romaji": "ONE PIECE",
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
       "status": "RELEASING",
-      "next_ep": 1180,
-      "next_ep_time": 60584
+      "next_ep": 1181,
+      "next_ep_time": 8323874,
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 1999,
+      "source": "MANGA",
+      "duration": 24
     },
     {
       "title_english": "One Piece",
@@ -47,7 +36,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx30013-BeslEMqiPhlk.jpg",
       "status": "RELEASING",
       "next_ep": null,
-      "next_ep_time": null
+      "next_ep_time": null,
+      "format": "MANGA",
+      "season": null,
+      "season_year": null,
+      "source": "ORIGINAL",
+      "duration": null
     },
     {
       "title_english": "One-Punch Man",
@@ -55,15 +49,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx74347-sZpmNJ5xLwRK.jpg",
       "status": "RELEASING",
       "next_ep": null,
-      "next_ep_time": null
-    },
-    {
-      "title_english": "Mushoku Tensei: Jobless Reincarnation Season 3",
-      "title_romaji": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178789-hNXjKFzUq7mk.jpg",
-      "status": "RELEASING",
-      "next_ep": 14,
-      "next_ep_time": 48824
+      "next_ep_time": null,
+      "format": "MANGA",
+      "season": null,
+      "season_year": null,
+      "source": null,
+      "duration": null
     },
     {
       "title_english": "Re:ZERO -Starting Life in Another World- Season 4",
@@ -71,7 +62,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg",
       "status": "RELEASING",
       "next_ep": 19,
-      "next_ep_time": 315224
+      "next_ep_time": 111314,
+      "format": "TV",
+      "season": "SPRING",
+      "season_year": 2026,
+      "source": "LIGHT_NOVEL",
+      "duration": 24
     },
     {
       "title_english": "Blue Lock",
@@ -79,7 +75,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx106130-yPNeuSu75ey1.jpg",
       "status": "RELEASING",
       "next_ep": null,
-      "next_ep_time": null
+      "next_ep_time": null,
+      "format": "MANGA",
+      "season": null,
+      "season_year": null,
+      "source": "ORIGINAL",
+      "duration": null
     },
     {
       "title_english": "BLEACH: Thousand-Year Blood War - The Calamity",
@@ -87,7 +88,25 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185874-aU3e6tBT6wwA.jpg",
       "status": "RELEASING",
       "next_ep": 9,
-      "next_ep_time": 1960423
+      "next_ep_time": 1756509,
+      "format": "TV",
+      "season": "SUMMER",
+      "season_year": 2026,
+      "source": "MANGA",
+      "duration": null
+    },
+    {
+      "title_english": "Sakamoto Days",
+      "title_romaji": "SAKAMOTO DAYS",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx125828-p78Z8SflkfmO.jpg",
+      "status": "RELEASING",
+      "next_ep": null,
+      "next_ep_time": null,
+      "format": "MANGA",
+      "season": null,
+      "season_year": null,
+      "source": "ORIGINAL",
+      "duration": null
     },
     {
       "title_english": "The Fragrant Flower Blooms With Dignity",
@@ -95,7 +114,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx140475-QEGtrmdvbpOv.jpg",
       "status": "RELEASING",
       "next_ep": null,
-      "next_ep_time": null
+      "next_ep_time": null,
+      "format": "MANGA",
+      "season": null,
+      "season_year": null,
+      "source": "ORIGINAL",
+      "duration": null
     }
   ],
   "trending_top10": [
@@ -105,7 +129,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-buvcRTBx4NSm.jpg",
       "average_score": 85,
       "genres": "Action, Drama, Fantasy, Mystery",
-      "status": "FINISHED"
+      "status": "FINISHED",
+      "format": "TV",
+      "season": "SPRING",
+      "season_year": 2013,
+      "source": "MANGA",
+      "duration": 24
     },
     {
       "title_english": "Demon Slayer: Kimetsu no Yaiba",
@@ -113,7 +142,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg",
       "average_score": 82,
       "genres": "Action, Adventure, Drama, Fantasy, Supernatural",
-      "status": "FINISHED"
+      "status": "FINISHED",
+      "format": "TV",
+      "season": null,
+      "season_year": 2019,
+      "source": null,
+      "duration": 24
     },
     {
       "title_english": "JUJUTSU KAISEN",
@@ -121,7 +155,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg",
       "average_score": 84,
       "genres": "Action, Drama, Supernatural",
-      "status": "FINISHED"
+      "status": "FINISHED",
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 2020,
+      "source": "MANGA",
+      "duration": 24
     },
     {
       "title_english": "Death Note",
@@ -129,7 +168,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-kUgkcrfOrkUM.jpg",
       "average_score": 84,
       "genres": "Mystery, Psychological, Supernatural, Thriller",
-      "status": "FINISHED"
+      "status": "FINISHED",
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 2006,
+      "source": "MANGA",
+      "duration": 23
     },
     {
       "title_english": "Hunter x Hunter (2011)",
@@ -137,7 +181,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png",
       "average_score": 89,
       "genres": "Action, Adventure, Fantasy",
-      "status": "FINISHED"
+      "status": "FINISHED",
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 2011,
+      "source": "MANGA",
+      "duration": 24
     },
     {
       "title_english": "ONE PIECE",
@@ -145,7 +194,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
       "average_score": 87,
       "genres": "Action, Adventure, Comedy, Drama, Fantasy",
-      "status": "RELEASING"
+      "status": "RELEASING",
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 1999,
+      "source": "MANGA",
+      "duration": 24
     },
     {
       "title_english": "Shingeki no Kyojin Season 2",
@@ -153,7 +207,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20958-HuFJyr54Mmir.jpg",
       "average_score": 85,
       "genres": "Action, Drama, Fantasy, Mystery",
-      "status": "FINISHED"
+      "status": "FINISHED",
+      "format": "TV",
+      "season": null,
+      "season_year": 2017,
+      "source": null,
+      "duration": 25
     },
     {
       "title_english": "Hagane no Renkinjutsushi: FULLMETAL ALCHEMIST",
@@ -161,7 +220,12 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx5114-nSWCgQlmOMtj.jpg",
       "average_score": 90,
       "genres": "Action, Adventure, Drama, Fantasy",
-      "status": "FINISHED"
+      "status": "FINISHED",
+      "format": "TV",
+      "season": "SPRING",
+      "season_year": 2009,
+      "source": "MANGA",
+      "duration": 25
     },
     {
       "title_english": "Naruto",
@@ -169,15 +233,25 @@
       "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-dE6UHbFFg1A5.jpg",
       "average_score": 80,
       "genres": "Action, Adventure, Comedy, Drama, Fantasy, Supernatural",
-      "status": "FINISHED"
+      "status": "FINISHED",
+      "format": "TV",
+      "season": "FALL",
+      "season_year": 2002,
+      "source": "MANGA",
+      "duration": 23
     },
     {
-      "title_english": "Chainsaw Man",
-      "title_romaji": "Chainsaw Man",
-      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127230-DdP4vAdssLoz.png",
-      "average_score": 83,
-      "genres": "Action, Drama, Horror, Supernatural",
-      "status": "FINISHED"
+      "title_english": "Sword Art Online",
+      "title_romaji": "Sword Art Online",
+      "cover_image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11757-SxYDUzdr9rh2.jpg",
+      "average_score": 70,
+      "genres": "Action, Adventure, Fantasy, Romance",
+      "status": "FINISHED",
+      "format": "TV",
+      "season": "SUMMER",
+      "season_year": 2012,
+      "source": "LIGHT_NOVEL",
+      "duration": 23
     }
   ],
   "binge_profiles": [
@@ -188,7 +262,11 @@
       "description": "Several hundred years ago, humans were nearly exterminated by titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest of titans.\r\nFlash forward to the present and the city has not seen a titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a colossal titan that appears out of thin air. As the smaller titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single titan and take revenge for all of mankind.\r\n(Source: MangaHelpers)",
       "season_year": 2013,
       "episodes": 25,
-      "studios": "WIT STUDIO"
+      "studios": "WIT STUDIO",
+      "format": "TV",
+      "season": "SPRING",
+      "source": "MANGA",
+      "duration": 24
     },
     {
       "title_english": "Demon Slayer: Kimetsu no Yaiba",
@@ -197,7 +275,11 @@
       "description": "It is the Taisho Period in Japan. Tanjiro, a kindhearted boy who sells charcoal for a living, finds his family slaughtered by a demon. To make matters worse, his younger sister Nezuko, the sole survivor, has been transformed into a demon herself. Though devastated by this grim reality, Tanjiro resolves to become a “demon slayer” so that he can turn his sister back into a human, and kill the demon that massacred his family.\n\n(Source: Crunchyroll)",
       "season_year": 2019,
       "episodes": 26,
-      "studios": "ufotable"
+      "studios": "ufotable",
+      "format": "TV",
+      "season": null,
+      "source": null,
+      "duration": 24
     },
     {
       "title_english": "JUJUTSU KAISEN",
@@ -206,7 +288,11 @@
       "description": "A boy fights... for \"the right death.\"\n\nHardship, regret, shame: the negative feelings that humans feel become Curses that lurk in our everyday lives. The Curses run rampant throughout the world, capable of leading people to terrible misfortune and even death. What's more, the Curses can only be exorcised by another Curse.\n\nItadori Yuji is a boy with tremendous physical strength, though he lives a completely ordinary high school life. One day, to save a friend who has been attacked by Curses, he eats the finger of the Double-Faced Specter, taking the Curse into his own soul. From then on, he shares one body with the Double-Faced Specter. Guided by the most powerful of sorcerers, Gojou Satoru, Itadori is admitted to the Tokyo Metropolitan Technical High School of Sorcery, an organization that fights the Curses... and thus begins the heroic tale of a boy who became a Curse to exorcise a Curse, a life from which he could never turn back.\n\n(Source: Crunchyroll)\n\nNote: The first episode received an early web premiere on September 19th, 2020. The regular TV broadcast started on October 3rd, 2020.",
       "season_year": 2020,
       "episodes": 24,
-      "studios": "MAPPA"
+      "studios": "MAPPA",
+      "format": "TV",
+      "season": "FALL",
+      "source": "MANGA",
+      "duration": 24
     },
     {
       "title_english": "Death Note",
@@ -215,7 +301,11 @@
       "description": "Light Yagami is a genius high school student who is about to learn about life through a book of death. When a bored shinigami, a God of Death, named Ryuk drops a black notepad called a Death Note, Light receives power over life and death with the stroke of a pen. Determined to use this dark gift for the best, Light sets out to rid the world of evil… namely, the people he believes to be evil. Should anyone hold such power?\n\nThe consequences of Light’s actions will set the world ablaze.\n\n(Source: VIZ Media)",
       "season_year": 2006,
       "episodes": 37,
-      "studios": "MADHOUSE"
+      "studios": "MADHOUSE",
+      "format": "TV",
+      "season": "FALL",
+      "source": "MANGA",
+      "duration": 23
     },
     {
       "title_english": "Hunter x Hunter (2011)",
@@ -224,8 +314,27 @@
       "description": "A Hunter is one who travels the world doing all sorts of dangerous tasks. From capturing criminals to searching deep within uncharted lands for any lost treasures. Gon is a young boy whose father disappeared long ago, being a Hunter. He believes if he could also follow his father's path, he could one day reunite with him.\nAfter becoming 12, Gon leaves his home and takes on the task of entering the Hunter exam, notorious for its low success rate and high probability of death to become an official Hunter. He befriends the revenge-driven Kurapika, the doctor-to-be Leorio and the rebellious ex-assassin Killua in the exam, with their friendship prevailing throughout the many trials and threats they come upon taking on the dangerous career of a Hunter.",
       "season_year": 2011,
       "episodes": 148,
-      "studios": "MADHOUSE"
+      "studios": "MADHOUSE",
+      "format": "TV",
+      "season": "FALL",
+      "source": "MANGA",
+      "duration": 24
     }
   ],
-  "birthdays": []
+  "birthdays": [
+    {
+      "name": "Shinju Inui",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b207937-ytYjcNtNX77K.png",
+      "favorites": 594,
+      "title_english": "Sono Bisque Doll wa Koi wo Suru",
+      "title_romaji": "Sono Bisque Doll wa Koi wo Suru"
+    },
+    {
+      "name": "Minato Amamiya",
+      "image_url": "https://s4.anilist.co/file/anilistcdn/character/large/b354441-KvKq0Zb8K1nd.jpg",
+      "favorites": 503,
+      "title_english": "The Ramparts of Ice",
+      "title_romaji": "Koori no Jouheki"
+    }
+  ]
 }

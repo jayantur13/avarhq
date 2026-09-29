@@ -1,0 +1,144 @@
+{
+  "data": [
+    {
+      "title": {
+        "english": null,
+        "romaji": "Re:Zero kara Hajimeru Kyuukei Jikan (Break Time) 4th Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210687-H54G1bTwCBpV.jpg"
+      },
+      "averageScore": 69,
+      "studios": {
+        "nodes": [
+          {
+            "name": "Studio PuYUKAI"
+          }
+        ]
+      },
+      "format": "ONA",
+      "season": "SPRING",
+      "seasonYear": 2026
+    },
+    {
+      "title": {
+        "english": null,
+        "romaji": "Sazae-san"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx2406-nP8NIct9Sci3.jpg"
+      },
+      "averageScore": 55,
+      "studios": {
+        "nodes": [
+          {
+            "name": "Eiken"
+          }
+        ]
+      },
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 1969
+    },
+    {
+      "title": {
+        "english": "Please Excuse My Younger Brothers",
+        "romaji": "Uchi no Otouto-domo ga Sumimasen"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx203490-YQXiymUiDQNA.jpg"
+      },
+      "averageScore": 68,
+      "studios": {
+        "nodes": [
+          {
+            "name": "Lay-duce"
+          }
+        ]
+      },
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026
+    },
+    {
+      "title": {
+        "english": "Detective Conan",
+        "romaji": "Meitantei Conan"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx235-MyYT7K3chBdO.jpg"
+      },
+      "averageScore": 82,
+      "studios": {
+        "nodes": [
+          {
+            "name": "TMS Entertainment"
+          }
+        ]
+      },
+      "format": "TV",
+      "season": "WINTER",
+      "seasonYear": 1996
+    },
+    {
+      "title": {
+        "english": "The Elusive Samurai Season 2",
+        "romaji": "Nige Jouzu no Wakagimi 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182616-DymJCBpkR4qs.jpg"
+      },
+      "averageScore": 76,
+      "studios": {
+        "nodes": [
+          {
+            "name": "CloverWorks"
+          }
+        ]
+      },
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026
+    },
+    {
+      "title": {
+        "english": "Magical Explorer",
+        "romaji": "Magical★Explorer: Eroge no Yuujin Chara ni Tensei Shitakedo, Game Chishiki Tsukatte Jiyuu ni Ikiru"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx169581-UlAviVH36Hxi.png"
+      },
+      "averageScore": 58,
+      "studios": {
+        "nodes": [
+          {
+            "name": "WHITE FOX"
+          }
+        ]
+      },
+      "format": "ONA",
+      "season": "FALL",
+      "seasonYear": 2026
+    },
+    {
+      "title": {
+        "english": "Shin Chan",
+        "romaji": "Crayon Shin-chan"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b966-QUCdKAk4ls9J.jpg"
+      },
+      "averageScore": 77,
+      "studios": {
+        "nodes": [
+          {
+            "name": "Shin-Ei Animation"
+          }
+        ]
+      },
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 1992
+    }
+  ]
+}

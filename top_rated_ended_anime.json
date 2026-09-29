@@ -1,0 +1,102 @@
+{
+  "data": [
+    {
+      "title": {
+        "english": "HAIKYU!! 3rd Season",
+        "romaji": "Haikyuu!!: Karasuno Koukou VS Shiratorizawa Gakuen Koukou"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21698-RL71mr1YU5Io.png"
+      },
+      "averageScore": 87,
+      "episodes": 10,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2016
+    },
+    {
+      "title": {
+        "english": "Kaguya-sama: Love is War -The First Kiss That Never Ends-",
+        "romaji": "Kaguya-sama wa Kokurasetai: First Kiss wa Owaranai"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx151384-gv0q8wOE6D58.jpg"
+      },
+      "averageScore": 87,
+      "episodes": 4,
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 2023
+    },
+    {
+      "title": {
+        "english": "Frieren: Beyond Journey’s End Season 2",
+        "romaji": "Sousou no Frieren 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg"
+      },
+      "averageScore": 88,
+      "episodes": 10,
+      "format": "TV",
+      "season": "WINTER",
+      "seasonYear": 2026
+    },
+    {
+      "title": {
+        "english": "Tomorrow's Joe 2",
+        "romaji": "Ashita no Joe 2"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx2921-PxFepBRCGD0K.jpg"
+      },
+      "averageScore": 89,
+      "episodes": 47,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 1980
+    },
+    {
+      "title": {
+        "english": "Orb: On the Movements of the Earth",
+        "romaji": "Chi. Chikyuu no Undou ni Tsuite"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx151514-Y0d82Ah2ZOHX.jpg"
+      },
+      "averageScore": 86,
+      "episodes": 25,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2024
+    },
+    {
+      "title": {
+        "english": "Monster",
+        "romaji": "MONSTER"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx19-gtMC64182sm4.jpg"
+      },
+      "averageScore": 88,
+      "episodes": 74,
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 2004
+    },
+    {
+      "title": {
+        "english": "OSHI NO KO Season 3",
+        "romaji": "[Oshi no Ko] 3rd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182587-fsU8LOjmd7oj.jpg"
+      },
+      "averageScore": 86,
+      "episodes": 11,
+      "format": "TV",
+      "season": "WINTER",
+      "seasonYear": 2026
+    }
+  ]
+}

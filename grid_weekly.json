@@ -1,10 +1,10 @@
 {
-  "metadata": {
-    "last_updated": "2026-09-28T09:29:09.572346"
-  },
   "data": [
     {
       "id": 21,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 1999,
       "title": {
         "english": "ONE PIECE",
         "romaji": "ONE PIECE"
@@ -14,11 +14,14 @@
       },
       "nextAiringEpisode": {
         "episode": 1181,
-        "timeUntilAiring": 8417812
+        "timeUntilAiring": 8319327
       }
     },
     {
       "id": 189046,
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 2026,
       "title": {
         "english": "Re:ZERO -Starting Life in Another World- Season 4",
         "romaji": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"
@@ -28,11 +31,14 @@
       },
       "nextAiringEpisode": {
         "episode": 19,
-        "timeUntilAiring": 205252
+        "timeUntilAiring": 106767
       }
     },
     {
       "id": 185874,
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026,
       "title": {
         "english": "BLEACH: Thousand-Year Blood War - The Calamity",
         "romaji": "BLEACH: Sennen Kessen-hen - Kashin-tan"
@@ -42,11 +48,14 @@
       },
       "nextAiringEpisode": {
         "episode": 9,
-        "timeUntilAiring": 1850452
+        "timeUntilAiring": 1751967
       }
     },
     {
       "id": 235,
+      "format": "TV",
+      "season": "WINTER",
+      "seasonYear": 1996,
       "title": {
         "english": "Detective Conan",
         "romaji": "Meitantei Conan"
@@ -56,11 +65,14 @@
       },
       "nextAiringEpisode": {
         "episode": 1215,
-        "timeUntilAiring": 450052
+        "timeUntilAiring": 351567
       }
     },
     {
       "id": 180136,
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026,
       "title": {
         "english": "The Exiled Heavy Knight Knows How to Game the System",
         "romaji": "Tsuihou Sareta Tensei Juukishi wa Game Chishiki de Musou Suru"
@@ -70,11 +82,14 @@
       },
       "nextAiringEpisode": {
         "episode": 14,
-        "timeUntilAiring": 300412
+        "timeUntilAiring": 201927
       }
     },
     {
       "id": 210031,
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026,
       "title": {
         "english": "You and I Are Polar Opposites Season 2",
         "romaji": "Seihantai na Kimi to Boku 2nd Season"
@@ -84,11 +99,14 @@
       },
       "nextAiringEpisode": {
         "episode": 13,
-        "timeUntilAiring": 532852
+        "timeUntilAiring": 434367
       }
     },
     {
       "id": 187260,
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026,
       "title": {
         "english": "I Want to Love You Till Your Dying Day",
         "romaji": "Kimi ga Shinu made Koi wo Shitai"
@@ -98,11 +116,14 @@
       },
       "nextAiringEpisode": {
         "episode": 13,
-        "timeUntilAiring": 117052
+        "timeUntilAiring": 18567
       }
     },
     {
       "id": 198946,
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026,
       "title": {
         "english": "Clevatess Season 2",
         "romaji": "Clevatess II: Majuu no Ou to Itsuwari no Yuusha Denshou"
@@ -112,25 +133,14 @@
       },
       "nextAiringEpisode": {
         "episode": 13,
-        "timeUntilAiring": 201652
-      }
-    },
-    {
-      "id": 197754,
-      "title": {
-        "english": "LIAR GAME",
-        "romaji": "LIAR GAME"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx197754-Q5KqcUhIdypp.png"
-      },
-      "nextAiringEpisode": {
-        "episode": 26,
-        "timeUntilAiring": 39652
+        "timeUntilAiring": 103167
       }
     },
     {
       "id": 171110,
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 2026,
       "title": {
         "english": "Ascendance of a Bookworm: Adopted Daughter of an Archduke",
         "romaji": "Honzuki no Gekokujou: Ryoushu no Youjo"
@@ -140,11 +150,14 @@
       },
       "nextAiringEpisode": {
         "episode": 24,
-        "timeUntilAiring": 448252
+        "timeUntilAiring": 349767
       }
     },
     {
       "id": 184356,
+      "format": "TV",
+      "season": null,
+      "seasonYear": null,
       "title": {
         "english": "Tomb Raider King",
         "romaji": "Dogul Wang"
@@ -154,11 +167,31 @@
       },
       "nextAiringEpisode": {
         "episode": 12,
-        "timeUntilAiring": 216952
+        "timeUntilAiring": 118467
+      }
+    },
+    {
+      "id": 210482,
+      "format": "ONA",
+      "season": "FALL",
+      "seasonYear": 2026,
+      "title": {
+        "english": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE",
+        "romaji": "JoJo no Kimyou na Bouken: Steel Ball Run - 2nd & 3rd STAGE"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210482-P1VNKbqdJ6Zj.jpg"
+      },
+      "nextAiringEpisode": {
+        "episode": 2,
+        "timeUntilAiring": 261567
       }
     },
     {
       "id": 182616,
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026,
       "title": {
         "english": "The Elusive Samurai Season 2",
         "romaji": "Nige Jouzu no Wakagimi 2nd Season"
@@ -168,11 +201,14 @@
       },
       "nextAiringEpisode": {
         "episode": 12,
-        "timeUntilAiring": 383452
+        "timeUntilAiring": 284967
       }
     },
     {
       "id": 158871,
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 2023,
       "title": {
         "english": "Pokémon Horizons: The Series",
         "romaji": "Pocket Monsters (2023)"
@@ -182,11 +218,14 @@
       },
       "nextAiringEpisode": {
         "episode": 152,
-        "timeUntilAiring": 971752
+        "timeUntilAiring": 873267
       }
     },
     {
       "id": 966,
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 1992,
       "title": {
         "english": "Shin Chan",
         "romaji": "Crayon Shin-chan"
@@ -196,11 +235,31 @@
       },
       "nextAiringEpisode": {
         "episode": 1355,
-        "timeUntilAiring": 444652
+        "timeUntilAiring": 346167
+      }
+    },
+    {
+      "id": 191832,
+      "format": "ONA",
+      "season": null,
+      "seasonYear": null,
+      "title": {
+        "english": "Link Click Season 3",
+        "romaji": "Shiguang Dailiren III"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191832-bsnCaLNVjzEw.png"
+      },
+      "nextAiringEpisode": {
+        "episode": 9,
+        "timeUntilAiring": 243567
       }
     },
     {
       "id": 185756,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2026,
       "title": {
         "english": "As a Reincarnated Aristocrat, I'll Use My Appraisal Skill to Rise in the World Season 3",
         "romaji": "Tensei Kizoku, Kantei Skill de Nariagaru 3rd Season"
@@ -210,78 +269,73 @@
       },
       "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 556252
+        "timeUntilAiring": 457767
       }
     },
     {
-      "id": 207809,
+      "id": 212888,
+      "format": "ONA",
+      "season": "FALL",
+      "seasonYear": 2026,
       "title": {
-        "english": "Red River",
-        "romaji": "Sora wa Akai Kawa no Hotori"
+        "english": "Overgeared",
+        "romaji": "Temppal: Item no Chikara"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx207809-cpS7CAyjN7iP.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx212888-NhyvqPt5aIuJ.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 13,
-        "timeUntilAiring": 131752
+        "episode": 2,
+        "timeUntilAiring": 457767
       }
     },
     {
-      "id": 203490,
-      "title": {
-        "english": "Please Excuse My Younger Brothers",
-        "romaji": "Uchi no Otouto-domo ga Sumimasen"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx203490-YQXiymUiDQNA.jpg"
-      },
-      "nextAiringEpisode": {
-        "episode": 13,
-        "timeUntilAiring": 385252
-      }
-    },
-    {
-      "id": 8687,
+      "id": 118123,
+      "format": "ONA",
+      "season": "SPRING",
+      "seasonYear": 2019,
       "title": {
         "english": null,
-        "romaji": "Doraemon (2005)"
+        "romaji": "Holo no Graffiti"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b8687-bBnJMGnih4PT.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx118123-xqn5fYsjKXJU.png"
       },
       "nextAiringEpisode": {
-        "episode": 935,
-        "timeUntilAiring": 446452
+        "episode": 386,
+        "timeUntilAiring": 437967
       }
     },
     {
-      "id": 202957,
+      "id": 204389,
+      "format": "ONA",
+      "season": "FALL",
+      "seasonYear": 2026,
       "title": {
-        "english": "Star Detective Precure!",
-        "romaji": "Meitantei Precure!"
+        "english": "A Wild Last Boss Appeared! Season 2",
+        "romaji": "Yasei no Last Boss ga Arawareta! 2nd Season"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx202957-fxZGgJTvwXzP.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204389-jCoFCeTthDMy.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 36,
-        "timeUntilAiring": 502252
+        "episode": 2,
+        "timeUntilAiring": 367767
       }
     },
     {
-      "id": 165159,
+      "id": 21828,
+      "format": "OVA",
+      "season": "FALL",
+      "seasonYear": 2016,
       "title": {
-        "english": "BEYBLADE X",
-        "romaji": "BEYBLADE X"
+        "english": null,
+        "romaji": "Shoujo Ramune"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx165159-aCFC9Sng7t4M.png"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21828-3KDKm3Zu2DyX.jpg"
       },
-      "nextAiringEpisode": {
-        "episode": 135,
-        "timeUntilAiring": 367252
-      }
+      "nextAiringEpisode": null
     }
   ]
 }

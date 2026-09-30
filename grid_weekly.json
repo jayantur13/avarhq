@@ -14,24 +14,7 @@
       },
       "nextAiringEpisode": {
         "episode": 1181,
-        "timeUntilAiring": 8319327
-      }
-    },
-    {
-      "id": 189046,
-      "format": "TV",
-      "season": "SPRING",
-      "seasonYear": 2026,
-      "title": {
-        "english": "Re:ZERO -Starting Life in Another World- Season 4",
-        "romaji": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189046-yaHWtS5FII46.jpg"
-      },
-      "nextAiringEpisode": {
-        "episode": 19,
-        "timeUntilAiring": 106767
+        "timeUntilAiring": 8182988
       }
     },
     {
@@ -48,7 +31,7 @@
       },
       "nextAiringEpisode": {
         "episode": 9,
-        "timeUntilAiring": 1751967
+        "timeUntilAiring": 1615628
       }
     },
     {
@@ -65,7 +48,7 @@
       },
       "nextAiringEpisode": {
         "episode": 1215,
-        "timeUntilAiring": 351567
+        "timeUntilAiring": 215228
       }
     },
     {
@@ -82,7 +65,7 @@
       },
       "nextAiringEpisode": {
         "episode": 14,
-        "timeUntilAiring": 201927
+        "timeUntilAiring": 65588
       }
     },
     {
@@ -99,41 +82,24 @@
       },
       "nextAiringEpisode": {
         "episode": 13,
-        "timeUntilAiring": 434367
+        "timeUntilAiring": 298028
       }
     },
     {
-      "id": 187260,
-      "format": "TV",
-      "season": "SUMMER",
+      "id": 159042,
+      "format": "ONA",
+      "season": "FALL",
       "seasonYear": 2026,
       "title": {
-        "english": "I Want to Love You Till Your Dying Day",
-        "romaji": "Kimi ga Shinu made Koi wo Shitai"
+        "english": "Reincarnated as a Sword Season 2",
+        "romaji": "Tensei Shitara Ken Deshita 2nd Season"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx187260-WW5RBa5NINRP.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx159042-GGFwlDskc5vR.png"
       },
       "nextAiringEpisode": {
-        "episode": 13,
-        "timeUntilAiring": 18567
-      }
-    },
-    {
-      "id": 198946,
-      "format": "TV",
-      "season": "SUMMER",
-      "seasonYear": 2026,
-      "title": {
-        "english": "Clevatess Season 2",
-        "romaji": "Clevatess II: Majuu no Ou to Itsuwari no Yuusha Denshou"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx198946-IGXmbqBEYRYD.jpg"
-      },
-      "nextAiringEpisode": {
-        "episode": 13,
-        "timeUntilAiring": 103167
+        "episode": 2,
+        "timeUntilAiring": 584228
       }
     },
     {
@@ -150,24 +116,7 @@
       },
       "nextAiringEpisode": {
         "episode": 24,
-        "timeUntilAiring": 349767
-      }
-    },
-    {
-      "id": 184356,
-      "format": "TV",
-      "season": null,
-      "seasonYear": null,
-      "title": {
-        "english": "Tomb Raider King",
-        "romaji": "Dogul Wang"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx184356-SlFIstXUXJYP.png"
-      },
-      "nextAiringEpisode": {
-        "episode": 12,
-        "timeUntilAiring": 118467
+        "timeUntilAiring": 213428
       }
     },
     {
@@ -184,7 +133,7 @@
       },
       "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 261567
+        "timeUntilAiring": 125228
       }
     },
     {
@@ -201,7 +150,7 @@
       },
       "nextAiringEpisode": {
         "episode": 12,
-        "timeUntilAiring": 284967
+        "timeUntilAiring": 148628
       }
     },
     {
@@ -218,58 +167,7 @@
       },
       "nextAiringEpisode": {
         "episode": 152,
-        "timeUntilAiring": 873267
-      }
-    },
-    {
-      "id": 966,
-      "format": "TV",
-      "season": "SPRING",
-      "seasonYear": 1992,
-      "title": {
-        "english": "Shin Chan",
-        "romaji": "Crayon Shin-chan"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b966-QUCdKAk4ls9J.jpg"
-      },
-      "nextAiringEpisode": {
-        "episode": 1355,
-        "timeUntilAiring": 346167
-      }
-    },
-    {
-      "id": 191832,
-      "format": "ONA",
-      "season": null,
-      "seasonYear": null,
-      "title": {
-        "english": "Link Click Season 3",
-        "romaji": "Shiguang Dailiren III"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191832-bsnCaLNVjzEw.png"
-      },
-      "nextAiringEpisode": {
-        "episode": 9,
-        "timeUntilAiring": 243567
-      }
-    },
-    {
-      "id": 185756,
-      "format": "TV",
-      "season": "FALL",
-      "seasonYear": 2026,
-      "title": {
-        "english": "As a Reincarnated Aristocrat, I'll Use My Appraisal Skill to Rise in the World Season 3",
-        "romaji": "Tensei Kizoku, Kantei Skill de Nariagaru 3rd Season"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185756-xPCl0RyQ7fXD.jpg"
-      },
-      "nextAiringEpisode": {
-        "episode": 2,
-        "timeUntilAiring": 457767
+        "timeUntilAiring": 736928
       }
     },
     {
@@ -286,24 +184,58 @@
       },
       "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 457767
+        "timeUntilAiring": 321428
       }
     },
     {
-      "id": 118123,
-      "format": "ONA",
+      "id": 966,
+      "format": "TV",
       "season": "SPRING",
-      "seasonYear": 2019,
+      "seasonYear": 1992,
       "title": {
-        "english": null,
-        "romaji": "Holo no Graffiti"
+        "english": "Shin Chan",
+        "romaji": "Crayon Shin-chan"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx118123-xqn5fYsjKXJU.png"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b966-QUCdKAk4ls9J.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 386,
-        "timeUntilAiring": 437967
+        "episode": 1355,
+        "timeUntilAiring": 209828
+      }
+    },
+    {
+      "id": 185756,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2026,
+      "title": {
+        "english": "As a Reincarnated Aristocrat, I'll Use My Appraisal Skill to Rise in the World Season 3",
+        "romaji": "Tensei Kizoku, Kantei Skill de Nariagaru 3rd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185756-xPCl0RyQ7fXD.jpg"
+      },
+      "nextAiringEpisode": {
+        "episode": 2,
+        "timeUntilAiring": 321428
+      }
+    },
+    {
+      "id": 191832,
+      "format": "ONA",
+      "season": null,
+      "seasonYear": null,
+      "title": {
+        "english": "Link Click Season 3",
+        "romaji": "Shiguang Dailiren III"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191832-bsnCaLNVjzEw.png"
+      },
+      "nextAiringEpisode": {
+        "episode": 9,
+        "timeUntilAiring": 107228
       }
     },
     {
@@ -320,7 +252,24 @@
       },
       "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 367767
+        "timeUntilAiring": 231428
+      }
+    },
+    {
+      "id": 118123,
+      "format": "ONA",
+      "season": "SPRING",
+      "seasonYear": 2019,
+      "title": {
+        "english": null,
+        "romaji": "Holo no Graffiti"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx118123-xqn5fYsjKXJU.png"
+      },
+      "nextAiringEpisode": {
+        "episode": 386,
+        "timeUntilAiring": 301628
       }
     },
     {
@@ -334,6 +283,51 @@
       },
       "coverImage": {
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21828-3KDKm3Zu2DyX.jpg"
+      },
+      "nextAiringEpisode": null
+    },
+    {
+      "id": 140842,
+      "format": "TV_SHORT",
+      "season": "SPRING",
+      "seasonYear": 2022,
+      "title": {
+        "english": "Chiikawa",
+        "romaji": "Chiikawa"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140842-T0geOCa3zS0A.jpg"
+      },
+      "nextAiringEpisode": null
+    },
+    {
+      "id": 207809,
+      "format": "TV",
+      "season": "SUMMER",
+      "seasonYear": 2026,
+      "title": {
+        "english": "Red River",
+        "romaji": "Sora wa Akai Kawa no Hotori"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx207809-cpS7CAyjN7iP.jpg"
+      },
+      "nextAiringEpisode": {
+        "episode": 14,
+        "timeUntilAiring": 501728
+      }
+    },
+    {
+      "id": 132203,
+      "format": "OVA",
+      "season": "SUMMER",
+      "seasonYear": 2021,
+      "title": {
+        "english": "Imaizumi's house seems to be a gathering place for gals",
+        "romaji": "Imaizumin-chi wa Douyara Gal no Tamariba ni Natteru Rashii"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx132203-s7yzfJv6d48L.jpg"
       },
       "nextAiringEpisode": null
     }

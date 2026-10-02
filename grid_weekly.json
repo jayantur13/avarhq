@@ -14,7 +14,7 @@
       },
       "nextAiringEpisode": {
         "episode": 1181,
-        "timeUntilAiring": 8137368
+        "timeUntilAiring": 8036605
       }
     },
     {
@@ -31,7 +31,7 @@
       },
       "nextAiringEpisode": {
         "episode": 9,
-        "timeUntilAiring": 1570008
+        "timeUntilAiring": 1469245
       }
     },
     {
@@ -48,7 +48,7 @@
       },
       "nextAiringEpisode": {
         "episode": 1215,
-        "timeUntilAiring": 169608
+        "timeUntilAiring": 68845
       }
     },
     {
@@ -64,8 +64,8 @@
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx180136-gtMTCRlOD4OE.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 14,
-        "timeUntilAiring": 19968
+        "episode": 15,
+        "timeUntilAiring": 524005
       }
     },
     {
@@ -82,7 +82,7 @@
       },
       "nextAiringEpisode": {
         "episode": 13,
-        "timeUntilAiring": 252408
+        "timeUntilAiring": 151645
       }
     },
     {
@@ -99,7 +99,7 @@
       },
       "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 538608
+        "timeUntilAiring": 437845
       }
     },
     {
@@ -116,7 +116,7 @@
       },
       "nextAiringEpisode": {
         "episode": 24,
-        "timeUntilAiring": 167808
+        "timeUntilAiring": 67045
       }
     },
     {
@@ -132,8 +132,8 @@
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210482-P1VNKbqdJ6Zj.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 2,
-        "timeUntilAiring": 79608
+        "episode": 3,
+        "timeUntilAiring": 583645
       }
     },
     {
@@ -150,7 +150,24 @@
       },
       "nextAiringEpisode": {
         "episode": 12,
-        "timeUntilAiring": 103008
+        "timeUntilAiring": 2245
+      }
+    },
+    {
+      "id": 213805,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2026,
+      "title": {
+        "english": "The Ramparts of Ice Season 2",
+        "romaji": "Koori no Jouheki 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx213805-Nokui3uWlIlw.png"
+      },
+      "nextAiringEpisode": {
+        "episode": 2,
+        "timeUntilAiring": 522205
       }
     },
     {
@@ -167,7 +184,7 @@
       },
       "nextAiringEpisode": {
         "episode": 152,
-        "timeUntilAiring": 691308
+        "timeUntilAiring": 590545
       }
     },
     {
@@ -177,14 +194,14 @@
       "seasonYear": 2026,
       "title": {
         "english": "Overgeared",
-        "romaji": "Temppal: Item no Chikara"
+        "romaji": "Tempal: Item no Chikara"
       },
       "coverImage": {
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx212888-NhyvqPt5aIuJ.jpg"
       },
       "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 275808
+        "timeUntilAiring": 175045
       }
     },
     {
@@ -201,7 +218,7 @@
       },
       "nextAiringEpisode": {
         "episode": 1355,
-        "timeUntilAiring": 164208
+        "timeUntilAiring": 63445
       }
     },
     {
@@ -218,7 +235,7 @@
       },
       "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 275808
+        "timeUntilAiring": 175045
       }
     },
     {
@@ -234,8 +251,8 @@
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191832-bsnCaLNVjzEw.png"
       },
       "nextAiringEpisode": {
-        "episode": 9,
-        "timeUntilAiring": 61608
+        "episode": 10,
+        "timeUntilAiring": 565645
       }
     },
     {
@@ -252,7 +269,7 @@
       },
       "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 185808
+        "timeUntilAiring": 85045
       }
     },
     {
@@ -269,7 +286,7 @@
       },
       "nextAiringEpisode": {
         "episode": 386,
-        "timeUntilAiring": 256008
+        "timeUntilAiring": 155245
       }
     },
     {
@@ -314,22 +331,8 @@
       },
       "nextAiringEpisode": {
         "episode": 14,
-        "timeUntilAiring": 456108
+        "timeUntilAiring": 355345
       }
-    },
-    {
-      "id": 132203,
-      "format": "OVA",
-      "season": "SUMMER",
-      "seasonYear": 2021,
-      "title": {
-        "english": "Imaizumi's house seems to be a gathering place for gals",
-        "romaji": "Imaizumin-chi wa Douyara Gal no Tamariba ni Natteru Rashii"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx132203-s7yzfJv6d48L.jpg"
-      },
-      "nextAiringEpisode": null
     }
   ]
 }

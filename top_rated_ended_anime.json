@@ -2,73 +2,45 @@
   "data": [
     {
       "title": {
-        "english": "HAIKYU!! 3rd Season",
-        "romaji": "Haikyuu!!: Karasuno Koukou VS Shiratorizawa Gakuen Koukou"
+        "english": "The Apothecary Diaries Season 2",
+        "romaji": "Kusuriya no Hitorigoto 2nd Season"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21698-RL71mr1YU5Io.png"
-      },
-      "averageScore": 87,
-      "episodes": 10,
-      "format": "TV",
-      "season": "FALL",
-      "seasonYear": 2016
-    },
-    {
-      "title": {
-        "english": "Kaguya-sama: Love is War -The First Kiss That Never Ends-",
-        "romaji": "Kaguya-sama wa Kokurasetai: First Kiss wa Owaranai"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx151384-gv0q8wOE6D58.jpg"
-      },
-      "averageScore": 87,
-      "episodes": 4,
-      "format": "TV",
-      "season": "SPRING",
-      "seasonYear": 2023
-    },
-    {
-      "title": {
-        "english": "Frieren: Beyond Journey’s End Season 2",
-        "romaji": "Sousou no Frieren 2nd Season"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx176301-TIGmldLffQGX.jpg"
       },
       "averageScore": 88,
-      "episodes": 10,
+      "episodes": 24,
       "format": "TV",
       "season": "WINTER",
-      "seasonYear": 2026
+      "seasonYear": 2025
     },
     {
       "title": {
-        "english": "Tomorrow's Joe 2",
-        "romaji": "Ashita no Joe 2"
+        "english": "MUSHI-SHI The Next Passage 2",
+        "romaji": "Mushishi Zoku Shou 2"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx2921-PxFepBRCGD0K.jpg"
-      },
-      "averageScore": 89,
-      "episodes": 47,
-      "format": "TV",
-      "season": "FALL",
-      "seasonYear": 1980
-    },
-    {
-      "title": {
-        "english": "Orb: On the Movements of the Earth",
-        "romaji": "Chi. Chikyuu no Undou ni Tsuite"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx151514-Y0d82Ah2ZOHX.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20751-O3XJ9u30y7Qj.png"
       },
       "averageScore": 86,
-      "episodes": 25,
+      "episodes": 10,
       "format": "TV",
       "season": "FALL",
-      "seasonYear": 2024
+      "seasonYear": 2014
+    },
+    {
+      "title": {
+        "english": "Gintama Season 4",
+        "romaji": "Gintama."
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx97889-ytqHdmus9wQi.jpg"
+      },
+      "averageScore": 89,
+      "episodes": 12,
+      "format": "TV",
+      "season": "WINTER",
+      "seasonYear": 2017
     },
     {
       "title": {
@@ -86,17 +58,45 @@
     },
     {
       "title": {
-        "english": "OSHI NO KO Season 3",
-        "romaji": "[Oshi no Ko] 3rd Season"
+        "english": "Umamusume: Cinderella Gray 2nd Cour",
+        "romaji": "Uma Musume: Cinderella Gray Part 2"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182587-fsU8LOjmd7oj.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195240-hKcmllV6YHQT.jpg"
       },
       "averageScore": 86,
-      "episodes": 11,
+      "episodes": 10,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2025
+    },
+    {
+      "title": {
+        "english": "Hunter x Hunter (2011)",
+        "romaji": "HUNTER×HUNTER (2011)"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png"
+      },
+      "averageScore": 89,
+      "episodes": 148,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2011
+    },
+    {
+      "title": {
+        "english": "Vinland Saga Season 2",
+        "romaji": "VINLAND SAGA SEASON 2"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx136430-gsBsJjA7hGh9.jpg"
+      },
+      "averageScore": 88,
+      "episodes": 24,
       "format": "TV",
       "season": "WINTER",
-      "seasonYear": 2026
+      "seasonYear": 2023
     }
   ]
 }

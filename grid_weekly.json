@@ -14,7 +14,7 @@
       },
       "nextAiringEpisode": {
         "episode": 1181,
-        "timeUntilAiring": 8036605
+        "timeUntilAiring": 7465307
       }
     },
     {
@@ -31,7 +31,41 @@
       },
       "nextAiringEpisode": {
         "episode": 9,
-        "timeUntilAiring": 1469245
+        "timeUntilAiring": 897947
+      }
+    },
+    {
+      "id": 195516,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2026,
+      "title": {
+        "english": "The Apothecary Diaries Season 3",
+        "romaji": "Kusuriya no Hitorigoto 3rd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195516-MJpUZlOberqH.jpg"
+      },
+      "nextAiringEpisode": {
+        "episode": 2,
+        "timeUntilAiring": 33947
+      }
+    },
+    {
+      "id": 195604,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2026,
+      "title": {
+        "english": "Black Clover Season 2",
+        "romaji": "Black Clover 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx195604-tSZcfKbVqSEG.jpg"
+      },
+      "nextAiringEpisode": {
+        "episode": 2,
+        "timeUntilAiring": 120347
       }
     },
     {
@@ -47,8 +81,8 @@
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx235-MyYT7K3chBdO.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 1215,
-        "timeUntilAiring": 68845
+        "episode": 1216,
+        "timeUntilAiring": 102347
       }
     },
     {
@@ -64,25 +98,8 @@
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx180136-gtMTCRlOD4OE.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 15,
-        "timeUntilAiring": 524005
-      }
-    },
-    {
-      "id": 210031,
-      "format": "TV",
-      "season": "SUMMER",
-      "seasonYear": 2026,
-      "title": {
-        "english": "You and I Are Polar Opposites Season 2",
-        "romaji": "Seihantai na Kimi to Boku 2nd Season"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx210031-TppgcHZh46LY.jpg"
-      },
-      "nextAiringEpisode": {
-        "episode": 13,
-        "timeUntilAiring": 151645
+        "episode": 16,
+        "timeUntilAiring": 557507
       }
     },
     {
@@ -98,25 +115,25 @@
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx159042-GGFwlDskc5vR.png"
       },
       "nextAiringEpisode": {
-        "episode": 2,
-        "timeUntilAiring": 437845
+        "episode": 3,
+        "timeUntilAiring": 471347
       }
     },
     {
-      "id": 171110,
+      "id": 189123,
       "format": "TV",
-      "season": "SPRING",
+      "season": "FALL",
       "seasonYear": 2026,
       "title": {
-        "english": "Ascendance of a Bookworm: Adopted Daughter of an Archduke",
-        "romaji": "Honzuki no Gekokujou: Ryoushu no Youjo"
+        "english": "Blue Box Season 2",
+        "romaji": "Ao no Hako Season 2"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171110-7zOdInS6DQNL.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx189123-0secXELIhkIW.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 24,
-        "timeUntilAiring": 67045
+        "episode": 2,
+        "timeUntilAiring": 183347
       }
     },
     {
@@ -133,24 +150,41 @@
       },
       "nextAiringEpisode": {
         "episode": 3,
-        "timeUntilAiring": 583645
+        "timeUntilAiring": 12347
       }
     },
     {
-      "id": 182616,
+      "id": 178083,
       "format": "TV",
-      "season": "SUMMER",
+      "season": "FALL",
       "seasonYear": 2026,
       "title": {
-        "english": "The Elusive Samurai Season 2",
-        "romaji": "Nige Jouzu no Wakagimi 2nd Season"
+        "english": "Tokyo Revengers: War of the Three Titans Arc",
+        "romaji": "Tokyo Revengers: Santen Sensou-hen"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182616-DymJCBpkR4qs.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx178083-bg7pg6TCHwtG.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 12,
-        "timeUntilAiring": 2245
+        "episode": 2,
+        "timeUntilAiring": 44327
+      }
+    },
+    {
+      "id": 212888,
+      "format": "ONA",
+      "season": "FALL",
+      "seasonYear": 2026,
+      "title": {
+        "english": "Overgeared",
+        "romaji": "Tempal: Item no Chikara"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx212888-NhyvqPt5aIuJ.jpg"
+      },
+      "nextAiringEpisode": {
+        "episode": 3,
+        "timeUntilAiring": 208547
       }
     },
     {
@@ -166,8 +200,42 @@
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx213805-Nokui3uWlIlw.png"
       },
       "nextAiringEpisode": {
+        "episode": 3,
+        "timeUntilAiring": 555707
+      }
+    },
+    {
+      "id": 191656,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2026,
+      "title": {
+        "english": "Even the Student Council Has Its Holes!",
+        "romaji": "Seitokai ni mo Ana wa Aru!"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191656-xFHtxM8SUTdU.png"
+      },
+      "nextAiringEpisode": {
         "episode": 2,
-        "timeUntilAiring": 522205
+        "timeUntilAiring": 125747
+      }
+    },
+    {
+      "id": 172192,
+      "format": "TV",
+      "season": "FALL",
+      "seasonYear": 2026,
+      "title": {
+        "english": "A Returner's Magic Should be Special Season 2",
+        "romaji": "Kikansha no Mahou wa Tokubetsu desu 2nd Season"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx172192-W7P5xEUaxF3y.jpg"
+      },
+      "nextAiringEpisode": {
+        "episode": 2,
+        "timeUntilAiring": 472247
       }
     },
     {
@@ -184,41 +252,41 @@
       },
       "nextAiringEpisode": {
         "episode": 152,
-        "timeUntilAiring": 590545
+        "timeUntilAiring": 19247
       }
     },
     {
-      "id": 212888,
-      "format": "ONA",
+      "id": 205909,
+      "format": "TV",
       "season": "FALL",
       "seasonYear": 2026,
       "title": {
-        "english": "Overgeared",
-        "romaji": "Tempal: Item no Chikara"
+        "english": "Firefly Wedding",
+        "romaji": "Hotaru no Yomeiri"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx212888-NhyvqPt5aIuJ.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx205909-DM0fAzNQulod.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 2,
-        "timeUntilAiring": 175045
+        "episode": 1,
+        "timeUntilAiring": 35747
       }
     },
     {
-      "id": 966,
+      "id": 152677,
       "format": "TV",
-      "season": "SPRING",
-      "seasonYear": 1992,
+      "season": "FALL",
+      "seasonYear": 2026,
       "title": {
-        "english": "Shin Chan",
-        "romaji": "Crayon Shin-chan"
+        "english": "The Detective Is Already Dead Season 2",
+        "romaji": "Tantei wa mou, Shindeiru. Season 2"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b966-QUCdKAk4ls9J.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx152677-gtJbgjE94lCN.png"
       },
       "nextAiringEpisode": {
-        "episode": 1355,
-        "timeUntilAiring": 63445
+        "episode": 2,
+        "timeUntilAiring": 460547
       }
     },
     {
@@ -234,104 +302,42 @@
         "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185756-xPCl0RyQ7fXD.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 2,
-        "timeUntilAiring": 175045
+        "episode": 3,
+        "timeUntilAiring": 208547
       }
     },
     {
-      "id": 191832,
-      "format": "ONA",
-      "season": null,
-      "seasonYear": null,
-      "title": {
-        "english": "Link Click Season 3",
-        "romaji": "Shiguang Dailiren III"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191832-bsnCaLNVjzEw.png"
-      },
-      "nextAiringEpisode": {
-        "episode": 10,
-        "timeUntilAiring": 565645
-      }
-    },
-    {
-      "id": 204389,
-      "format": "ONA",
-      "season": "FALL",
-      "seasonYear": 2026,
-      "title": {
-        "english": "A Wild Last Boss Appeared! Season 2",
-        "romaji": "Yasei no Last Boss ga Arawareta! 2nd Season"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx204389-jCoFCeTthDMy.jpg"
-      },
-      "nextAiringEpisode": {
-        "episode": 2,
-        "timeUntilAiring": 85045
-      }
-    },
-    {
-      "id": 118123,
-      "format": "ONA",
-      "season": "SPRING",
-      "seasonYear": 2019,
-      "title": {
-        "english": null,
-        "romaji": "Holo no Graffiti"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx118123-xqn5fYsjKXJU.png"
-      },
-      "nextAiringEpisode": {
-        "episode": 386,
-        "timeUntilAiring": 155245
-      }
-    },
-    {
-      "id": 21828,
-      "format": "OVA",
-      "season": "FALL",
-      "seasonYear": 2016,
-      "title": {
-        "english": null,
-        "romaji": "Shoujo Ramune"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21828-3KDKm3Zu2DyX.jpg"
-      },
-      "nextAiringEpisode": null
-    },
-    {
-      "id": 140842,
-      "format": "TV_SHORT",
-      "season": "SPRING",
-      "seasonYear": 2022,
-      "title": {
-        "english": "Chiikawa",
-        "romaji": "Chiikawa"
-      },
-      "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140842-T0geOCa3zS0A.jpg"
-      },
-      "nextAiringEpisode": null
-    },
-    {
-      "id": 207809,
+      "id": 191788,
       "format": "TV",
-      "season": "SUMMER",
+      "season": "FALL",
       "seasonYear": 2026,
       "title": {
-        "english": "Red River",
-        "romaji": "Sora wa Akai Kawa no Hotori"
+        "english": "Aoashi Season 2",
+        "romaji": "Aoashi 2nd Season"
       },
       "coverImage": {
-        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx207809-cpS7CAyjN7iP.jpg"
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx191788-XC6F24LdX6a4.jpg"
       },
       "nextAiringEpisode": {
-        "episode": 14,
-        "timeUntilAiring": 355345
+        "episode": 2,
+        "timeUntilAiring": 185147
+      }
+    },
+    {
+      "id": 966,
+      "format": "TV",
+      "season": "SPRING",
+      "seasonYear": 1992,
+      "title": {
+        "english": "Shin Chan",
+        "romaji": "Crayon Shin-chan"
+      },
+      "coverImage": {
+        "extraLarge": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b966-QUCdKAk4ls9J.jpg"
+      },
+      "nextAiringEpisode": {
+        "episode": 1356,
+        "timeUntilAiring": 96947
       }
     }
   ]

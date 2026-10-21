@@ -1,13 +1,13 @@
 import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = async () => {
-  const GITHUB_PAGES_FEED = `import.meta.env.BASE_URL/feed.xml`;
+export const GET: APIRoute = async ({ locals }) => {
+  // Cast to any to instantly bypass the TypeScript check
+  const cloudflareEnv = (locals as any).runtime.env;
+  const GITHUB_PAGES_FEED = `${cloudflareEnv.BASE_URL}/avardata`;
 
   try {
     const response = await fetch(GITHUB_PAGES_FEED, {
-      headers: {
-        'User-Agent': 'AVARHQ-Feed-Proxy'
-      }
+      headers: { 'User-Agent': 'AVARHQ-Feed-Proxy' }
     });
 
     if (!response.ok) {

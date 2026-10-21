@@ -4,8 +4,8 @@ import RandomEntry from '../components/RandomEntry.astro';
 
 // Fetch live data concurrently
 const [dailyRes, airingRes] = await Promise.all([
-  fetch(`${process.env.BASE_URL}/avardata/daily.json`),
-  fetch(`${process.env.BASE_URL}/avardata/airing_today_reel.json`)
+  fetch(`${Astro.locals.runtime.env.BASE_URL}/avardata/daily.json`),
+  fetch(`${Astro.locals.runtime.env.BASE_URL}/avardata/airing_today_reel.json`)
 ]);
 
 const dailyData = dailyRes.ok ? await dailyRes.json() : {};

@@ -146,11 +146,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; 
-    overflow-y: auto; 
-    overflow-x: hidden;
+    
+    /* Lock the screen size and safely clip the massive background elements */
+    height: 100dvh;
+    box-sizing: border-box;
+    overflow: hidden; 
+    
     isolation: isolate;
-    padding: clamp(22px, 4vw, 54px);
+    /* FIX: Padding now scales with viewport height (vh) instead of width (vw) */
+    padding: clamp(20px, 4vh, 54px);
+    
     background:
       radial-gradient(ellipse at 70% 40%, rgba(var(--accent-rgb), .15), transparent 42%),
       linear-gradient(145deg, #10111d, #080910 68%);
@@ -238,9 +243,9 @@
     z-index: 2;
     width: min(780px, 100%);
     margin: auto 0;
-    padding: clamp(20px, 5vh, 60px) 0; 
+    /* FIX: Padding shrinks on short screens */
+    padding: clamp(20px, 4vh, 60px) 0;
   }
-
   .entry-eyebrow {
     color: var(--accent);
     font-size: .72rem;
@@ -253,7 +258,10 @@
     margin: 0;
     max-width: 850px;
     color: #fff;
-    font-size: clamp(3rem, 9.5vw, 8rem);
+    
+    /* THE MAGIC FIX: min(..., 14vh) ensures the text can NEVER be so tall that it pushes the footer off the screen */
+    font-size: min(clamp(2.5rem, 9.5vw, 8rem), 14vh);
+    
     line-height: .91;
     letter-spacing: -.075em;
     font-weight: 900;
@@ -263,7 +271,8 @@
   .entry-description {
     color: #c0bfd0;
     font-size: clamp(.95rem, 2vw, 1.12rem);
-    margin: 26px 0 30px;
+    /* FIX: Margins shrink dynamically on short screens */
+    margin: clamp(14px, 2vh, 26px) 0 clamp(16px, 3vh, 30px);
     line-height: 1.7;
   }
 

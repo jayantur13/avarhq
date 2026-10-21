@@ -2,10 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RandomEntry from '../components/RandomEntry.astro';
 
+const BASE_RES = import.meta.env.BASE_URL_FILE;
+const f1 = 'daily.json';
+const f2 = 'airing_today_reel.json';
 // Fetch live data concurrently
 const [dailyRes, airingRes] = await Promise.all([
-  fetch(`${import.meta.env.BASE_URL}/avardata/daily.json`),
-  fetch(`${import.meta.env.BASE_URL}/avardata/airing_today_reel.json`)
+  fetch(`${BASE_RES}/${f1}`),
+  fetch(`${BASE_RES}/${f2}`)
 ]);
 
 const dailyData = dailyRes.ok ? await dailyRes.json() : {};

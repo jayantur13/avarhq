@@ -1,12 +1,6 @@
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "avarhq",
-  "compatibility_date": "2026-04-11", 
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
-  "assets": {
-    "directory": "./dist",
-    "not_found_handling": "404-page"
-  }
-}
+name = "avarhq"
+compatibility_date = "2024-04-03"
+pages_build_output_dir = "./dist"
+
+[compatibility_flags]
+flags = [ "nodejs_compat" ]

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About | AVARHQ" 
+  description="Learn about AVARHQ's mission, zero-friction architecture, and our direct integrations with the AniList and Jikan APIs.">
+  <article class="max-w-3xl mx-auto px-6 py-24 space-y-12">
+    <header class="border-b border-white/10 pb-8">
+      <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-4">About AVARHQ</h1>
+      <p class="text-cyan-400 text-sm font-bold tracking-widest uppercase">The Digital Archive</p>
+    </header>
+
+    <div class="prose prose-invert prose-cyan max-w-none prose-p:text-gray-400 prose-headings:text-white prose-headings:uppercase prose-headings:tracking-wide">
+      <h2>The Mission</h2>
+      <p>AVARHQ is a custom-built digital mirror and expanded archive for our Instagram media presence. It was designed from the ground up to provide our community with an unfiltered, highly-curated database of the anime industry's highest quality drops, masterpieces, and upcoming releases.</p>
+
+      <h2>The Architecture</h2>
+      <p>We believe in a frictionless user experience. Our infrastructure is completely open and relies on zero friction:</p>
+      <ul>
+        <li><strong>No Registration:</strong> There are no accounts, no passwords, and no paywalls.</li>
+        <li><strong>No Data Collection:</strong> We do not track your activity, use analytics cookies, or sell your data.</li>
+        <li><strong>No Advertisements:</strong> The platform is completely ad-free.</li>
+      </ul>
+
+      <h2>Data Providers & Credits</h2>
+      <p>All anime metadata, character information, high-resolution posters, and release schedules are actively retrieved using the <strong>AniList GraphQL API</strong>. Information regarding official, legal streaming platforms is retrieved in real-time via the <strong>Jikan API (MyAnimeList)</strong>.</p>
+      <p>AVARHQ creates no original anime content and holds no copyright over the media displayed. Utmost respect and credit belong to the tireless studios, directors, manga artists, animators, and voice actors who bring these stories to life.</p>
+    </div>
+  </article>
+</BaseLayout>

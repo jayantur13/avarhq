@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Search | AVARHQ" 
+  description="Query the complete AniList registry for any anime media, release schedules, and streaming data.">
+  <div class="max-w-7xl mx-auto px-6 py-12 space-y-12 min-h-[70vh]">
+    
+    <header class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+      <div class="w-full md:w-1/2">
+        <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white drop-shadow-md mb-2">
+           Search
+        </h1>
+        <p class="text-gray-400 text-lg font-medium tracking-wide">
+          Query the complete AniList registry for any media.
+        </p>
+      </div>
+      
+      <div class="w-full md:w-1/2 relative">
+        <form id="search-form" class="relative w-full">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Type at least 3 letters to search..." 
+            class="w-full bg-[#13151f] border border-white/20 rounded-xl py-4 px-5 text-base text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors shadow-lg"
+            autocomplete="off"
+          />
+          <div class="absolute right-4 top-4 text-gray-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <!-- Initial / Empty State -->
+    <div id="initial-state" class="text-center py-20 border border-white/5 bg-[#13151f] rounded-3xl space-y-4 transition-all">
+      <div class="text-4xl text-gray-600">
+        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      </div>
+      <h2 class="text-xl font-black uppercase tracking-widest text-white">Waiting for query</h2>
+      <p class="text-xs text-gray-500 uppercase tracking-widest">Search outside avar.hq to discover new additions.</p>
+    </div>
+
+    <!-- Active Loading Spinner (Initial Search) -->
+    <div id="loading-state" class="hidden py-20 flex-col items-center justify-center space-y-4">
+      <div class="w-10 h-10 border-4 border-white/10 border-t-cyan-500 rounded-full animate-spin"></div>
+      <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Loading from database...</span>
+    </div>
+
+    <!-- Search Results Grid -->
+    <div id="results-grid" class="hidden grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+
+    <!-- Load More Button -->
+    <div id="load-more-container" class="hidden text-center pt-8">
+      <button 
+        id="load-more-btn" 
+        class="px-8 py-3 bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/50 rounded-xl text-xs font-black uppercase tracking-widest text-white transition-all inline-flex items-center gap-2"
+      >
+        <span>Load More Results</span>
+        <div id="load-more-spinner" class="hidden w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+      </button>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script>
+  // Formatting Helpers
+  const getTitle = (anime) => anime?.title?.english || anime?.title?.romaji || 'Unknown Title';
+  const getImage = (anime) => anime?.coverImage?.extraLarge || '';
+  const getFormat = (anime) => (anime?.format || 'TV').replace("TV_SHORT", "SHORT");
+  const getSeason = (anime) => anime?.season || '';
+  const getYear = (anime) => anime?.seasonYear || anime?.startDate?.year || '';
+  const getMetadataTag = (anime) => `${getFormat(anime)} • ${getSeason(anime)} ${getYear(anime)}`.replace(/^[•\s]+|[•\s]+$/g, '').trim();
+  const getMonthName = (num) => ["TBA", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][num] || "TBA";
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const initialState = document.getElementById('initial-state');
+    const loadingState = document.getElementById('loading-state');
+    const resultsGrid = document.getElementById('results-grid');
+    const loadMoreContainer = document.getElementById('load-more-container');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const loadMoreSpinner = document.getElementById('load-more-spinner');
+
+    if (!searchInput) return;
+
+    // Pagination State
+    let currentPage = 1;
+    let currentQuery = '';
+    let isFetching = false;
+
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    const buildAnimeCard = (anime) => {
+      let badgeHtml = '';
+
+      if (anime.status === 'RELEASING' && anime.nextAiringEpisode) {
+        const s = anime.nextAiringEpisode.timeUntilAiring;
+        const d = Math.floor(s / 86400);
+        const h = Math.floor((s % 86400) / 3600);
+        badgeHtml = `<span class="bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded">Ep ${anime.nextAiringEpisode.episode} in ${d}d ${h}h</span>`;
+      } else if (anime.status === 'NOT_YET_RELEASED') {
+        const start = anime.startDate?.year ? `${getMonthName(anime.startDate.month)} ${anime.startDate.year}` : 'TBA';
+        badgeHtml = `<span class="bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded">Dropping ${start}</span>`;
+      } else {
+        badgeHtml = `<span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded">Score • ${anime.averageScore || 'N/A'}%</span>`;
+      }
+
+      return `
+        <a href="/anime?id=${anime.id}" class="group relative aspect-[2/3] rounded-2xl overflow-hidden bg-[#13151f] border border-white/5 hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-end p-5">
+          <img src="${getImage(anime)}" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" alt="Cover" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/50 to-transparent"></div>
+          
+          <div class="relative z-10 flex flex-col gap-2">
+            <div class="flex items-center gap-2">${badgeHtml}</div>
+            <h3 class="text-base font-black uppercase leading-tight line-clamp-2 text-white group-hover:text-cyan-400 transition-colors">${getTitle(anime)}</h3>
+            <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">${getMetadataTag(anime)}</p>
+          </div>
+        </a>
+      `;
+    };
+
+    const performSearch = async (queryStr, isLoadMore = false) => {
+      if (isFetching) return;
+      if (queryStr.length < 3) {
+        initialState?.classList.remove('hidden');
+        resultsGrid?.classList.add('hidden');
+        loadingState?.classList.add('hidden');
+        loadingState?.classList.remove('flex');
+        loadMoreContainer?.classList.add('hidden');
+        return;
+      }
+
+      isFetching = true;
+
+      if (!isLoadMore) {
+        // Reset state for new search
+        currentPage = 1;
+        currentQuery = queryStr;
+        initialState?.classList.add('hidden');
+        resultsGrid?.classList.add('hidden');
+        loadMoreContainer?.classList.add('hidden');
+        loadingState?.classList.remove('hidden');
+        loadingState?.classList.add('flex');
+        if (resultsGrid) resultsGrid.innerHTML = '';
+      } else {
+        // Show spinner on the load more button
+        loadMoreSpinner?.classList.remove('hidden');
+      }
+
+      // Updated query: Added $page variable and pageInfo for pagination
+      const graphqlQuery = `
+        query ($search: String, $page: Int) {
+          Page(page: $page, perPage: 24) {
+            pageInfo {
+              hasNextPage
+            }
+            media(search: $search, type: ANIME, sort: [POPULARITY_DESC]) {
+              id
+              status
+              format
+              season
+              seasonYear
+              title { english romaji }
+              coverImage { extraLarge }
+              nextAiringEpisode { episode timeUntilAiring }
+              startDate { year month }
+              averageScore
+            }
+          }
+        }
+      `;
+
+      try {
+        const res = await fetch('https://graphql.anilist.co', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            query: graphqlQuery, 
+            variables: { search: queryStr, page: currentPage } 
+          })
+        });
+
+        const json = await res.json();
+        const animeList = json?.data?.Page?.media || [];
+        const hasNextPage = json?.data?.Page?.pageInfo?.hasNextPage || false;
+
+        if (!isLoadMore) {
+          loadingState?.classList.add('hidden');
+          loadingState?.classList.remove('flex');
+          resultsGrid?.classList.remove('hidden');
+        } else {
+          loadMoreSpinner?.classList.add('hidden');
+        }
+
+        if (animeList.length === 0 && !isLoadMore) {
+          if (resultsGrid) {
+            resultsGrid.innerHTML = `
+              <div class="col-span-full text-center py-12 border border-white/5 bg-[#13151f] rounded-3xl">
+                <p class="text-lg font-black uppercase tracking-widest text-red-500">No records found for "${queryStr}"</p>
+              </div>
+            `;
+          }
+        } else {
+          // Append new HTML rather than replacing it
+          if (resultsGrid) {
+            resultsGrid.insertAdjacentHTML('beforeend', animeList.map(buildAnimeCard).join(''));
+          }
+        }
+
+        // Toggle the Load More button visibility
+        if (hasNextPage) {
+          loadMoreContainer?.classList.remove('hidden');
+        } else {
+          loadMoreContainer?.classList.add('hidden');
+        }
+
+      } catch (e) {
+        if (!isLoadMore) {
+          loadingState?.classList.add('hidden');
+          loadingState?.classList.remove('flex');
+          initialState?.classList.remove('hidden');
+        }
+        loadMoreSpinner?.classList.add('hidden');
+      } finally {
+        isFetching = false;
+      }
+    };
+
+    const debouncedSearch = debounce((e) => {
+      performSearch(e.target.value.trim());
+    }, 500);
+
+    searchInput.addEventListener('input', debouncedSearch);
+
+    searchForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      performSearch(searchInput.value.trim());
+    });
+
+    loadMoreBtn?.addEventListener('click', () => {
+      currentPage++;
+      performSearch(currentQuery, true);
+    });
+  });
+</script>

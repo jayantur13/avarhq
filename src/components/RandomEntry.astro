@@ -1,0 +1,502 @@
+
+---
+---
+
+<div class="avar-entry" id="avar-entry" aria-label="AVAR introduction">
+  <div class="entry-scene" id="entry-scene" data-world="city">
+    <div class="scene-grid"></div>
+    <div class="scene-orb"></div>
+    <div class="scene-ring ring-one"></div>
+    <div class="scene-ring ring-two"></div>
+    <div class="scene-panels">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="scene-particles" aria-hidden="true"></div>
+
+    <header class="entry-header">
+      <a class="entry-brand" href="https://www.instagram.com/avar.hq/" aria-label="AVAR Intro">AVAR<span>.HQ</span></a>
+    </header>
+
+    <main class="entry-content">
+      <p class="entry-eyebrow" id="entry-eyebrow">A NEW WORLD IS CALLING</p>
+      <h1 id="entry-title">YOUR NEXT<br />WORLD AWAITS.</h1>
+      <p class="entry-description" id="entry-description">
+        Discover anime. Find your next obsession.
+      </p>
+      <button class="entry-enter" id="entry-enter">
+        <span id="entry-button-text">ENTER THE UNIVERSE</span>
+        <span aria-hidden="true">↗</span>
+      </button>
+    </main>
+
+    <footer class="entry-footer">
+      <span id="entry-world-name">ISEKAI</span>
+      <button class="entry-skip" id="entry-skip">SKIP INTRO ↗</button>
+    </footer>
+  </div>
+</div>
+<script is:inline>
+  function initRandomEntry() {
+    const root = document.getElementById("avar-entry");
+    if (!root) return;
+
+    // Immediately stop and hide if already seen
+    if (document.documentElement.classList.contains('intro-skipped') || sessionStorage.getItem('avar-entry-seen') === '1') {
+      root.style.display = 'none';
+      return;
+    }
+
+    const scene = document.getElementById("entry-scene");
+    const title = document.getElementById("entry-title");
+    const eyebrow = document.getElementById("entry-eyebrow");
+    const description = document.getElementById("entry-description");
+    const worldName = document.getElementById("entry-world-name");
+    const buttonText = document.getElementById("entry-button-text");
+    const enter = document.getElementById("entry-enter");
+    const skip = document.getElementById("entry-skip");
+
+    const worlds = [
+      { id: "city", name: "ISEKAI", eyebrow: "A NEW WORLD IS CALLING", title: "YOUR NEXT<br>WORLD AWAITS.", description: "Discover anime. Find your next obsession.", button: "ENTER THE UNIVERSE" },
+      { id: "manga", name: "MANGA DIMENSION", eyebrow: "EVERY PANEL HIDES A STORY", title: "TURN THE<br>NEXT PAGE.", description: "Every story leads somewhere unexpected.", button: "OPEN THE STORY" },
+      { id: "portal", name: "THE PORTAL", eyebrow: "BEYOND THE KNOWN", title: "STEP INTO<br>THE UNKNOWN.", description: "Your next favourite anime is waiting.", button: "CROSS THE PORTAL" },
+      { id: "station", name: "ANIME STATION", eyebrow: "YOUR NEXT STOP", title: "ALL ABOARD<br>THE NEXT STORY.", description: "Trending, airing, and arriving soon.", button: "BOARD THE TRAIN" },
+      { id: "island", name: "THE LIVING WORLD", eyebrow: "A LITTLE WORLD OF STORIES", title: "FIND YOUR<br>OWN WORLD.", description: "Explore new worlds, one anime at a time.", button: "EXPLORE THE WORLD" },
+      { id: "logo", name: "AVAR SIGNAL", eyebrow: "SIGNAL FOUND", title: "WELCOME TO<br>YOUR UNIVERSE.", description: "Anime culture. Discoveries. Your next obsession.", button: "DISCOVER AVAR" }
+    ];
+
+    let savedId = localStorage.getItem("avar-entry-world");
+    let selected = worlds.find((w) => w.id === savedId);
+    if (!selected) {
+      selected = worlds[Math.floor(Math.random() * worlds.length)];
+      localStorage.setItem("avar-entry-world", selected.id);
+    }
+    
+    scene.dataset.world = selected.id;
+    title.innerHTML = selected.title;
+    eyebrow.textContent = selected.eyebrow;
+    description.textContent = selected.description;
+    worldName.textContent = selected.name;
+    buttonText.textContent = selected.button;
+
+    // Ensure page is locked to top
+    window.scrollTo(0, 0);
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add("avar-entry-open");
+
+    let isDismissing = false;
+
+    function dismiss(e) {
+      if (e) e.preventDefault();
+      if (isDismissing) return;
+      isDismissing = true;
+
+      sessionStorage.setItem("avar-entry-seen", "1");
+      root.classList.add("entry-exit");
+      
+      setTimeout(() => {
+        root.style.display = 'none';
+        
+        // DIRECT CALL: Physically trigger the Age Gate global function
+        if (localStorage.getItem('avar_age_verified') !== 'true') {
+          if (typeof window.triggerAvarAgeGate === 'function') {
+            window.triggerAvarAgeGate();
+          }
+        } else {
+          document.body.style.overflow = '';
+          document.body.classList.remove("avar-entry-open");
+        }
+      }, 450);
+    }
+
+    // Refresh-proof button binding
+    if (enter) {
+      enter.onclick = dismiss;
+    }
+    if (skip) {
+      skip.onclick = dismiss;
+    }
+  }
+
+  // Run instantly on load, and again on Astro navigation
+  initRandomEntry();
+  document.addEventListener('astro:page-load', initRandomEntry);
+</script>
+<style>
+  .avar-entry[hidden] {
+    display: none !important;
+  }
+
+  .avar-entry {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    color: #f7f5ff;
+    background: #080910;
+    font-family: inherit;
+  }
+
+  body.avar-entry-open {
+    overflow: hidden;
+  }
+
+  .entry-scene {
+    --accent: #a99bff;
+    --accent-rgb: 169, 155, 255;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    isolation: isolate;
+    padding: clamp(22px, 4vw, 54px);
+    background: radial-gradient(ellipse at 70% 40%, rgba(var(--accent-rgb), .15), transparent 42%), linear-gradient(145deg, #10111d, #080910 68%);
+    
+    /* ADD the animation here, so only the inner content fades in */
+    animation: entry-appear 0.7s ease both;
+  }
+
+  .entry-scene::before,
+  .entry-scene::after {
+    position: absolute;
+    content: "";
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .entry-scene::before {
+    background: linear-gradient(90deg, rgba(8, 9, 16, .9), transparent 100%);
+  }
+
+  .entry-scene::after {
+    opacity: .15;
+    background-image: radial-gradient(#fff 0.6px, transparent 0.6px);
+    background-size: 5px 5px;
+    mask-image: linear-gradient(transparent, black, transparent);
+  }
+
+  .entry-scene[data-world="manga"] {
+    --accent: #ff7c9c;
+    --accent-rgb: 255, 124, 156;
+    background: linear-gradient(130deg, #170c15, #090910 70%);
+  }
+
+  .entry-scene[data-world="portal"] {
+    --accent: #72e7ff;
+    --accent-rgb: 114, 231, 255;
+  }
+
+  .entry-scene[data-world="station"] {
+    --accent: #ffbf78;
+    --accent-rgb: 255, 191, 120;
+    background: linear-gradient(145deg, #17121b, #090910 75%);
+  }
+
+  .entry-scene[data-world="island"] {
+    --accent: #a2ffc9;
+    --accent-rgb: 162, 255, 201;
+    background: linear-gradient(145deg, #0d191b, #090910 72%);
+  }
+
+  .entry-scene[data-world="logo"] {
+    --accent: #c5a3ff;
+    --accent-rgb: 197, 163, 255;
+  }
+
+  .entry-header,
+  .entry-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 2;
+  }
+
+  .entry-brand {
+    font-size: 1.3rem;
+    font-weight: 850;
+    letter-spacing: -.06em;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .entry-brand span {
+    color: var(--accent);
+  }
+
+  .entry-index,
+  .entry-world-name {
+    color: #a7a6ba;
+    font-size: .68rem;
+    letter-spacing: .18em;
+  }
+
+  .entry-content {
+    position: relative;
+    z-index: 2;
+    width: min(780px, 100%);
+    margin: auto 0;
+    padding: 60px 0;
+  }
+
+  .entry-eyebrow {
+    color: var(--accent);
+    font-size: .72rem;
+    letter-spacing: .22em;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+
+  .entry-content h1 {
+    margin: 0;
+    max-width: 850px;
+    color: #fff;
+    font-size: clamp(3rem, 9.5vw, 8rem);
+    line-height: .91;
+    letter-spacing: -.075em;
+    font-weight: 900;
+    text-wrap: balance;
+  }
+
+  .entry-description {
+    color: #c0bfd0;
+    font-size: clamp(.95rem, 2vw, 1.12rem);
+    margin: 26px 0 30px;
+    line-height: 1.7;
+  }
+
+  .entry-enter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 16px 20px;
+    min-height: 52px;
+    border: 1px solid rgba(var(--accent-rgb), .6);
+    border-radius: 4px;
+    color: white;
+    background: rgba(var(--accent-rgb), .09);
+    font: inherit;
+    font-size: .72rem;
+    font-weight: 750;
+    letter-spacing: .1em;
+    cursor: pointer;
+    transition: background .25s, transform .25s;
+  }
+
+  .entry-enter:hover {
+    background: rgba(var(--accent-rgb), .2);
+    transform: translateY(-2px);
+  }
+
+  .entry-skip {
+    color: #c7c5d7;
+    background: transparent;
+    border: 0;
+    padding: 12px 0 12px 12px;
+    font: inherit;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    cursor: pointer;
+  }
+
+  .scene-grid {
+    position: absolute;
+    z-index: -1;
+    width: 120vw;
+    height: 65vh;
+    left: -10vw;
+    bottom: -25vh;
+    opacity: .32;
+    transform: perspective(380px) rotateX(58deg);
+    transform-origin: center top;
+    background-image:
+      linear-gradient(rgba(var(--accent-rgb), .35) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--accent-rgb), .35) 1px, transparent 1px);
+    background-size: 55px 55px;
+    mask-image: linear-gradient(to bottom, black, transparent 80%);
+    animation: grid-drift 12s linear infinite;
+  }
+
+  .scene-orb {
+    position: absolute;
+    z-index: -1;
+    width: clamp(180px, 35vw, 440px);
+    aspect-ratio: 1;
+    right: 8%;
+    top: 50%;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    border: 1px solid rgba(var(--accent-rgb), .4);
+    background: radial-gradient(circle at 35% 30%, rgba(var(--accent-rgb), .24), transparent 62%);
+    box-shadow: 0 0 90px rgba(var(--accent-rgb), .1), inset 0 0 70px rgba(var(--accent-rgb), .1);
+    animation: orb-float 7s ease-in-out infinite;
+  }
+
+  .scene-ring {
+    position: absolute;
+    z-index: -1;
+    width: clamp(230px, 40vw, 510px);
+    aspect-ratio: 1;
+    right: 5%;
+    top: 50%;
+    border: 1px solid rgba(var(--accent-rgb), .38);
+    border-radius: 50%;
+    transform: translateY(-50%) rotateX(62deg);
+    box-shadow: 0 0 35px rgba(var(--accent-rgb), .08);
+  }
+
+  .ring-two {
+    width: clamp(190px, 32vw, 400px);
+    transform: translateY(-50%) rotateY(62deg);
+    border-style: dashed;
+    animation: ring-turn 30s linear infinite;
+  }
+
+  .scene-panels {
+    position: absolute;
+    z-index: -1;
+    inset: 12% 8% 12% 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    perspective: 900px;
+  }
+
+  .scene-panels span {
+    display: block;
+    width: 27%;
+    height: 55%;
+    border: 1px solid rgba(var(--accent-rgb), .55);
+    background: linear-gradient(155deg, rgba(var(--accent-rgb), .19), rgba(255,255,255,.015));
+    box-shadow: 0 0 45px rgba(var(--accent-rgb), .08);
+    transform: rotateY(-22deg) rotateZ(-4deg);
+    animation: panel-float 5s ease-in-out infinite alternate;
+  }
+
+  .scene-panels span:nth-child(2) {
+    height: 78%;
+    animation-delay: -2s;
+    transform: rotateY(-12deg);
+  }
+
+  .scene-panels span:nth-child(3) {
+    animation-delay: -1s;
+    transform: rotateY(-22deg) rotateZ(4deg);
+  }
+
+  [data-world="manga"] .scene-orb,
+  [data-world="manga"] .scene-ring {
+    display: none;
+  }
+
+  [data-world="manga"] .scene-panels {
+    transform: rotate(-8deg);
+  }
+
+  [data-world="portal"] .scene-orb {
+    background: radial-gradient(circle, rgba(var(--accent-rgb), .03) 35%, rgba(var(--accent-rgb), .24) 48%, transparent 65%);
+    box-shadow: 0 0 80px rgba(var(--accent-rgb), .18);
+  }
+
+  [data-world="station"] .scene-grid {
+    transform: perspective(250px) rotateX(72deg);
+    bottom: -10vh;
+  }
+
+  [data-world="island"] .scene-orb {
+    border-radius: 42% 58% 63% 37% / 40% 36% 64% 60%;
+  }
+
+  [data-world="logo"] .scene-panels span {
+    width: 12%;
+    height: 12%;
+    border-radius: 50%;
+    border: 0;
+    background: var(--accent);
+    box-shadow: 0 0 30px var(--accent);
+  }
+
+  .entry-exit {
+    opacity: 0;
+    transform: scale(1.025);
+    transition: opacity .45s ease, transform .45s ease;
+    pointer-events: none;
+  }
+
+  @keyframes entry-appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes grid-drift {
+    to { background-position: 0 55px, 55px 0; }
+  }
+
+  @keyframes orb-float {
+    0%, 100% { margin-top: -8px; }
+    50% { margin-top: 8px; }
+  }
+
+  @keyframes ring-turn {
+    to { rotate: 360deg; }
+  }
+
+  @keyframes panel-float {
+    from { translate: 0 -8px; }
+    to { translate: 0 8px; }
+  }
+
+  @media (max-width: 640px) {
+    .entry-scene {
+      padding: 24px;
+    }
+
+    .entry-content {
+      padding: 35px 0;
+    }
+
+    .entry-scene::before {
+      background: linear-gradient(90deg, rgba(8, 9, 16, .55), rgba(8, 9, 16, .2));
+    }
+
+    .scene-orb {
+      right: -28%;
+      top: 40%;
+      opacity: .7;
+    }
+
+    .scene-ring {
+      right: -35%;
+      top: 40%;
+      opacity: .6;
+    }
+
+    .scene-panels {
+      inset: 12% -25% 12% 45%;
+      opacity: .45;
+    }
+
+    .entry-index {
+      font-size: .58rem;
+    }
+
+    .entry-world-name,
+    .entry-skip {
+      font-size: .59rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .avar-entry *,
+    .avar-entry *::before,
+    .avar-entry *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>

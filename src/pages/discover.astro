@@ -1,0 +1,270 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const BASE_URL = `${process.env.BASE_URL}/avardata`;
+
+// Safe fetch helper that returns an empty object if a JSON doesn't exist yet
+const fetchJson = async (filename) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${filename}`);
+    return res.ok ? await res.json() : {};
+  } catch {
+    return {};
+  }
+};
+
+// Fetch everything concurrently for maximum speed
+const [
+  dailyData, 
+  gridWeeklyData, 
+  recData, 
+  trendingData, 
+  masterpieceData, 
+  upcomingMonthData, 
+  upcomingYearData
+] = await Promise.all([
+  fetchJson('daily.json'),
+  fetchJson('grid_weekly.json'),
+  fetchJson('recommended_anime.json'),
+  fetchJson('trending_now_anime.json'),
+  fetchJson('top_rated_ended_anime.json'),
+  fetchJson('upcoming_month_lineup.json'),
+  fetchJson('upcoming_yearly_lineup.json')
+]);
+
+const bingeVault = dailyData.binge_profiles || [];
+const gridWeeklyList = gridWeeklyData.data || [];
+const masterpieceList = masterpieceData.data || [];
+const upcomingMonthList = upcomingMonthData.data || [];
+const upcomingYearList = upcomingYearData.data || [];
+const trendingList = trendingData.data || [];
+const recA = recData.anime_a;
+const recB = recData.anime_b;
+
+const formatCountdown = (seconds) => {
+  if (!seconds || seconds <= 0) return 'Airing Now';
+  const w = Math.floor(seconds / (3600 * 24 * 7));
+  const d = Math.floor((seconds % (3600 * 24 * 7)) / (3600 * 24));
+  const h = Math.floor((seconds % (3600 * 24)) / 3600);
+  if (w > 0) return `${w}w ${d}d`;
+  if (d > 0) return `${d}d ${h}h`;
+  if (h > 0) return `${h}h`;
+  return 'Soon';
+};
+
+const getTitle = (anime) => anime?.title_english || anime?.title?.english || anime?.title_romaji || anime?.title?.romaji || 'Unknown Title';
+const getImage = (anime) => anime?.cover_image || anime?.coverImage?.extraLarge || '';
+const getBanner = (anime) => anime?.banner_image || anime?.bannerImage || getImage(anime);
+const getFormat = (anime) => (anime?.format || 'TV').replace("TV_SHORT", "SHORT");
+const getSeason = (anime) => anime?.season || '';
+const getYear = (anime) => anime?.season_year || anime?.seasonYear || anime?.startDate?.year || '';
+const getMetadataTag = (anime) => `${getFormat(anime)} • ${getSeason(anime)} ${getYear(anime)}`.replace(/^[•\s]+|[•\s]+$/g, '').trim();
+const getMonthName = (num) => ["TBA", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][num] || "TBA";
+---
+
+<BaseLayout title="Discover | AVARHQ" 
+  description="Explore curated weekly watchlists, algorithm matchups, hall-of-fame masterpieces, and upcoming anime lineups.">
+  <header class="mb-12 border-b border-white/10 pb-8">
+    <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white drop-shadow-md">The Archives</h1>
+    <p class="text-gray-400 mt-4 text-lg max-w-2xl font-medium tracking-wide">
+      Curated weekly watchlists, algorithm matchups, hall-of-fame masterpieces, and the long horizon.
+    </p>
+  </header>
+
+  <div class="space-y-24">
+
+    <!-- WEEKLY WATCHLIST (grid_weekly.json) -->
+    {gridWeeklyList.length > 0 && (
+      <section>
+        <div class="flex items-end justify-between mb-8 border-b border-white/10 pb-4">
+          <h2 class="text-2xl font-bold uppercase tracking-wide text-white">Editor's Watchlist</h2>
+          <span class="text-xs text-cyan-400 font-bold tracking-widest uppercase bg-cyan-500/10 px-3 py-1 rounded border border-cyan-500/20">Curated This Week</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 expandable-grid" data-limit="4">
+          {gridWeeklyList.map((anime) => (
+            <a href={`/anime?id=${anime.id}&title=${encodeURIComponent(getTitle(anime))}`} class="group relative aspect-[2/3] rounded-2xl overflow-hidden bg-[#13151f] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/50">
+              <img src={getImage(anime)} class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/50 to-transparent"></div>
+              
+              <div class="absolute bottom-0 left-0 p-5 w-full text-white z-10">
+                <span class="text-[9px] text-cyan-400 font-bold tracking-widest uppercase block mb-1">
+                  {getMetadataTag(anime)}
+                </span>
+                <h3 class="text-lg font-black uppercase leading-tight line-clamp-2">{getTitle(anime)}</h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- ALGORITHM MATCHUP (recommended_anime.json) -->
+    {recA && recB && (
+      <section>
+        <div class="flex items-end justify-between mb-8 border-b border-white/10 pb-4">
+          <h2 class="text-2xl font-bold uppercase tracking-wide text-white">Algorithm Matchup</h2>
+          <span class="text-xs text-yellow-500 font-bold tracking-widest uppercase bg-yellow-500/10 px-3 py-1 rounded border border-yellow-500/20">High Genre Overlap</span>
+        </div>
+        <div class="relative w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#13151f] p-6 md:p-10 flex flex-col md:flex-row items-center gap-8 hover:border-yellow-500/30 transition-colors">
+          <a href={`/anime?id=${recA.id}&title=${encodeURIComponent(getTitle(recA))}`} class="w-full md:w-[45%] flex flex-col md:flex-row items-center md:items-start gap-6 group cursor-pointer">
+            <div class="w-32 h-48 md:w-40 md:h-56 flex-shrink-0 rounded-xl overflow-hidden shadow-lg border border-white/5 relative">
+              <img src={getImage(recA)} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="flex flex-col text-center md:text-left">
+              <span class="text-yellow-500 text-[10px] font-black tracking-widest uppercase mb-2">If You Liked...</span>
+              <h3 class="text-xl md:text-2xl font-black uppercase text-white leading-tight mb-2 group-hover:text-yellow-400 transition-colors">{getTitle(recA)}</h3>
+              <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-4">{recA.genres?.split(',').slice(0, 3).join(' • ') || 'Various'}</p>
+            </div>
+          </a>
+          <div class="flex-shrink-0 flex flex-col items-center justify-center w-full md:w-[10%]">
+            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-gray-500 md:rotate-0 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </div>
+          </div>
+          <a href={`/anime?id=${recB.id}&title=${encodeURIComponent(getTitle(recB))}`} class="w-full md:w-[45%] flex flex-col md:flex-row-reverse items-center md:items-start gap-6 group cursor-pointer">
+            <div class="w-32 h-48 md:w-40 md:h-56 flex-shrink-0 rounded-xl overflow-hidden shadow-lg border border-cyan-500/30 relative">
+              <img src={getImage(recB)} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-cyan-500/10 mix-blend-overlay"></div>
+            </div>
+            <div class="flex flex-col text-center md:text-right">
+              <span class="text-cyan-400 text-[10px] font-black tracking-widest uppercase mb-2">...You Must Watch</span>
+              <h3 class="text-xl md:text-2xl font-black uppercase text-white leading-tight mb-2 group-hover:text-cyan-400 transition-colors">{getTitle(recB)}</h3>
+              <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-4">{recB.genres?.split(',').slice(0, 3).join(' • ') || 'Various'}</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    )}
+
+    <!-- ALL-TIME MASTERPIECES (top_rated_ended_anime.json) -->
+    {masterpieceList.length > 0 && (
+      <section>
+        <div class="flex items-end justify-between mb-8 border-b border-white/10 pb-4">
+          <h2 class="text-2xl font-bold uppercase tracking-wide text-white">All-Time Masterpieces</h2>
+          <span class="text-xs text-yellow-500 font-bold tracking-widest uppercase bg-yellow-500/10 px-3 py-1 rounded border border-yellow-500/20">Hall of Fame</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 expandable-grid" data-limit="4">
+          {masterpieceList.map((anime, index) => (
+            <a href={`/anime?title=${encodeURIComponent(getTitle(anime))}`} class="flex bg-[#13151f] border border-white/5 rounded-2xl overflow-hidden hover:border-yellow-500/30 transition-colors group cursor-pointer">
+              <div class="w-32 md:w-40 flex-shrink-0 relative">
+                <img src={getImage(anime)} class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+                <div class="absolute top-2 left-2 bg-yellow-500 text-black text-xs font-black px-2 py-1 rounded">#{index + 1}</div>
+              </div>
+              <div class="p-6 flex flex-col justify-center">
+                <h3 class="text-lg font-black uppercase tracking-tight text-white mb-2 line-clamp-2">{getTitle(anime)}</h3>
+                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">{getMetadataTag(anime)} • {anime.episodes || '?'} Eps</p>
+                <div class="mt-auto flex items-center gap-2">
+                  <span class="text-yellow-500">★</span>
+                  <span class="text-white font-bold">{anime.averageScore || 'N/A'}%</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- THE BINGE VAULT (daily.json) -->
+    {bingeVault.length > 0 && (
+      <section>
+        <div class="flex items-end justify-between mb-8 border-b border-white/10 pb-4">
+          <h2 class="text-2xl font-bold uppercase tracking-wide text-white">The Binge Vault</h2>
+          <span class="text-xs text-emerald-400 font-bold tracking-widest uppercase bg-emerald-500/10 px-3 py-1 rounded border border-emerald-500/20">100% Completed</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 expandable-grid" data-limit="3">
+          {bingeVault.map((anime) => (
+            <a href={`/anime?id=${anime.id}&title=${encodeURIComponent(getTitle(anime))}`} class="bg-[#13151f] border border-white/5 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-colors group flex flex-col relative cursor-pointer">
+              <div class="h-48 w-full relative overflow-hidden">
+                <img src={getBanner(anime)} class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-transform duration-500 group-hover:scale-105" />
+              </div>
+              <div class="p-6 flex-grow flex flex-col">
+                <h3 class="text-lg font-black uppercase tracking-tight text-white mb-1 line-clamp-1">{getTitle(anime)}</h3>
+                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Studio {anime.studios || 'Unknown'} • {getYear(anime)}</p>
+                <p class="text-xs text-gray-400 line-clamp-3 mt-2">{anime.description || 'No description available.'}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- THE HORIZON - MONTH & YEAR -->
+    {(upcomingMonthList.length > 0 || upcomingYearList.length > 0) && (
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        {upcomingMonthList.length > 0 && (
+          <div>
+            <div class="flex items-end justify-between mb-6 border-b border-white/10 pb-4">
+              <h2 class="text-xl font-bold uppercase tracking-wide text-white">Airing This Month</h2>
+              <span class="text-[10px] text-purple-400 font-bold tracking-widest uppercase bg-purple-500/10 px-2 py-1 rounded border border-purple-500/20">{getMonthName(upcomingMonthData.month)} {upcomingMonthData.year}</span>
+            </div>
+            <div class="flex flex-col gap-4 expandable-grid" data-limit="4">
+              {upcomingMonthList.map((anime) => (
+                <a href={`/anime?id=${anime.id}&title=${encodeURIComponent(getTitle(anime))}`} class="flex items-center gap-4 bg-[#13151f] p-3 rounded-xl border border-white/5 hover:border-purple-500/30 transition-colors">
+                  <img src={getImage(anime)} class="w-12 h-16 rounded object-cover" />
+                  <div class="flex-grow">
+                    <h3 class="text-sm font-black uppercase text-white line-clamp-1">{getTitle(anime)}</h3>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Format: {getFormat(anime)} • {anime.studios?.nodes?.[0]?.name || 'TBA'}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {upcomingYearList.length > 0 && (
+          <div>
+            <div class="flex items-end justify-between mb-6 border-b border-white/10 pb-4">
+              <h2 class="text-xl font-bold uppercase tracking-wide text-white">The Long Horizon</h2>
+              <span class="text-[10px] text-gray-400 font-bold tracking-widest uppercase bg-white/5 px-2 py-1 rounded border border-white/10">Pipeline {upcomingYearData.year}</span>
+            </div>
+            <div class="flex flex-col gap-4 expandable-grid" data-limit="4">
+              {upcomingYearList.map((anime) => (
+                <a href={`/anime?id=${anime.id}&title=${encodeURIComponent(getTitle(anime))}`} class="flex items-center gap-4 bg-[#13151f] p-3 rounded-xl border border-white/5 hover:border-white/20 transition-colors">
+                  <img src={getImage(anime)} class="w-12 h-16 rounded object-cover grayscale opacity-50" />
+                  <div class="flex-grow">
+                    <h3 class="text-sm font-black uppercase text-white line-clamp-1">{getTitle(anime)}</h3>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Expected: {getMonthName(anime.startDate?.month)} {anime.startDate?.year}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+    )}
+
+  </div>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const grids = document.querySelectorAll('.expandable-grid');
+    grids.forEach(grid => {
+      const limit = parseInt(grid.getAttribute('data-limit')) || 4;
+      const items = Array.from(grid.children);
+      if (items.length > limit) {
+        items.slice(limit).forEach(item => (item as HTMLElement).style.display = 'none');
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'mt-6 text-center';
+        const btn = document.createElement('button');
+        btn.textContent = `Show All (${items.length})`;
+        btn.className = 'w-full md:w-auto px-8 py-3 border border-white/10 text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5 transition-colors rounded-lg bg-[#13151f]';
+        btnContainer.appendChild(btn);
+        grid.parentNode.insertBefore(btnContainer, grid.nextSibling);
+        let isExpanded = false;
+        btn.addEventListener('click', () => {
+          isExpanded = !isExpanded;
+          if (isExpanded) {
+            items.forEach(item => (item as HTMLElement).style.display = '');
+            btn.textContent = 'Show Less';
+          } else {
+            items.slice(limit).forEach(item => (item as HTMLElement).style.display = 'none');
+            btn.textContent = `Show All (${items.length})`;
+            grid.previousElementSibling?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+    });
+  });
+</script>

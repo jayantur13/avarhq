@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <style>
+    /* Light Mode: Dark Icon for light tab bars */
+    .theme-icon { 
+      fill: #0A0C12;  
+      transition: fill 0.2s ease;
+    }
+
+    /* Dark Mode: Pure White Icon */
+    @media (prefers-color-scheme: dark) {
+      .theme-icon { 
+        fill: #FFFFFF; 
+      }
+    }
+  </style>
+
+  <g class="theme-icon">
+    <!-- Main Inverted Chevron / Minimalist Rounded 'A' -->
+    <path d="M 488.5 304.5 
+             C 501.5 288.5, 522.5 288.5, 535.5 304.5 
+             L 813.0 735.0 
+             C 834.0 767.5, 810.0 810.0, 771.5 810.0 
+             L 668.0 810.0 
+             C 652.5 810.0, 638.0 801.5, 630.0 788.0 
+             L 512.0 592.0 
+             L 394.0 788.0 
+             C 386.0 801.5, 371.5 810.0, 356.0 810.0 
+             L 252.5 810.0 
+             C 214.0 810.0, 190.0 767.5, 211.0 735.0 
+             Z" />
+
+    <!-- 4-Point Sparkle / Star (Upper Right Flank) -->
+    <path d="M 764.0 270.0 
+             C 772.5 316.0, 804.0 347.5, 850.0 356.0 
+             C 804.0 364.5, 772.5 396.0, 764.0 442.0 
+             C 755.5 396.0, 724.0 364.5, 678.0 356.0 
+             C 724.0 347.5, 755.5 316.0, 764.0 270.0 
+             Z" />
+  </g>
+</svg>

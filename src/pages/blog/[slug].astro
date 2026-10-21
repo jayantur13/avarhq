@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { marked } from 'marked';
+
+// In SSR mode, extract the slug or id directly from params
+const { slug, id } = Astro.params;
+const paramValue = slug || id || '';
+
+// Extract the discussion number from the end of the slug (e.g. "welcome-note-1" -> 1)
+const match = paramValue.match(/(\d+)$/);
+const discussionNumber = match ? parseInt(match[1], 10) : null;
+
+if (!discussionNumber) {
+  return Astro.redirect('/blog');
+}
+
+// Single-item GraphQL query targeted directly at this discussion number
+const query = `
+  query($number: Int!) {
+    repository(owner: "jayantur13", name: "avarhq") {
+      discussion(number: $number) {
+        number
+        title
+        body
+        createdAt
+        category {
+          name
+        }
+        author {
+          login
+        }
+      }
+    }
+  }
+`;
+
+let post = null;
+
+try {
+  const token = import.meta.env.DISCUSS || import.meta.env.GITHUB_TOKEN;
+  const response = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'User-Agent': 'AVARHQ-Media-App',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify({
+      query,
+      variables: { number: discussionNumber }
+    }),
+  });
+
+  if (response.ok) {
+    const json = await response.json();
+    post = json.data?.repository?.discussion || null;
+  } else {
+    console.error(`GitHub API error: ${response.status} ${response.statusText}`);
+  }
+} catch (err) {
+  console.error('Failed to load discussion details:', err);
+}
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+const htmlContent = marked.parse(post.body || '');
+const formattedDate = new Date(post.createdAt).toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={`${post.title} | AVAR Editorial`}>
+  <article class="max-w-4xl mx-auto px-6 py-12">
+    <header class="mb-12 border-b border-white/10 pb-8 text-center">
+      <span class="text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full mb-6 inline-block">
+        {post.category?.name || 'Editorial'}
+      </span>
+      <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white mb-6 leading-tight">
+        {post.title}
+      </h1>
+      <div class="text-sm font-bold tracking-widest uppercase text-gray-500">
+        Published on {formattedDate} • By {post.author?.login || 'AVARHQ'}
+      </div>
+    </header>
+
+    <div
+      class="prose prose-invert prose-cyan max-w-none prose-headings:uppercase prose-headings:tracking-tight prose-a:text-cyan-400 prose-img:rounded-xl prose-img:border prose-img:border-white/10"
+      set:html={htmlContent}
+    />
+
+    <div class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center">
+      <a href="/blog" class="text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
+        &larr; Back to Editorial
+      </a>
+    </div>
+  </article>
+</BaseLayout>

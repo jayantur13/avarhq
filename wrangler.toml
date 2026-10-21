@@ -1,9 +1,12 @@
 name = "avarhq"
 compatibility_date = "2024-09-23"
-compatibility_flags = [ "nodejs_compat" ]
+compatibility_flags = ["nodejs_compat"]
+# This line fixes the 404 by routing requests to Astro's server
+main = "@astrojs/cloudflare/entrypoints/server"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 
 [[kv_namespaces]]
 binding = "SESSION"

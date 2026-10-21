@@ -1,4 +1,10 @@
 name = "avarhq"
 compatibility_date = "2024-09-23"
-pages_build_output_dir = "./dist"
 compatibility_flags = [ "nodejs_compat" ]
+
+[assets]
+directory = "./dist"
+
+[[kv_namespaces]]
+binding = "SESSION"
+id = "f35c5addf32a4e4296a8c807adbceb12"

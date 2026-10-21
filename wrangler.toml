@@ -1,8 +1,0 @@
-name = "avarhq"
-compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "dist"
-
-[[kv_namespaces]]
-binding = "avarhq-session"
-id = "f35c5addf32a4e4296a8c807adbceb12"

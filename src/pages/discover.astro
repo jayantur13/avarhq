@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const BASE_URL = `${Astro.locals.runtime.env.BASE_URL}/avardata`;
+const BASE_URL = `${import.meta.env.BASE_URL}/avardata`;
 
 // Safe fetch helper that returns an empty object if a JSON doesn't exist yet
 const fetchJson = async (filename) => {

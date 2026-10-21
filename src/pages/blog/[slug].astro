@@ -37,7 +37,7 @@ const query = `
 let post = null;
 
 try {
-  const token = Astro.locals.runtime.env.DISCUSS;
+  const token = import.meta.env.DISCUSS;
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {

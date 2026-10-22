@@ -7,76 +7,117 @@ const id = Astro.url.searchParams.get('id');
 // 2. Default Fallbacks
 let seoTitle = "Database | AVARHQ";
 let seoDesc = "View comprehensive anime metadata, release countdowns, and verified streaming platforms.";
-let seoImage = "/og-default.png"; 
+let seoImage = "/default-og-image.jpg"; 
 
 let media = null;
 let countdownText = null;
 let formattedFormat = 'TV';
 let formattedSeason = 'TBA';
+let fetchError = null;
 
-// 3. Complete Server-Side Fetch (Replaces the client-side AniList fetch)
+// 3. Complete Server-Side Fetch with Diagnostics
 if (id) {
-  try {
-    const query = `
-      query ($id: Int) {
-        Media(id: $id, type: ANIME) {
-          id
-          idMal
-          status
-          title { english romaji }
-          description(asHtml: true)
-          coverImage { extraLarge }
-          bannerImage
-          format season seasonYear episodes averageScore
-          genres
-          nextAiringEpisode { episode timeUntilAiring }
+  const animeId = Number(id);
+
+  if (!Number.isInteger(animeId) || animeId <= 0) {
+    fetchError = `Invalid AniList ID: ${id}`;
+  } else {
+    try {
+      const response = await fetch('https://graphql.anilist.co', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query ($id: Int) {
+              Media(id: $id, type: ANIME) {
+                id
+                idMal
+                status
+                title { english romaji }
+                description(asHtml: true)
+                coverImage { extraLarge }
+                bannerImage
+                format season seasonYear episodes averageScore
+                genres
+                nextAiringEpisode { episode timeUntilAiring }
+              }
+            }
+          `,
+          variables: { id: animeId },
+        }),
+      });
+
+      const body = await response.text();
+
+      let json;
+      try {
+        json = JSON.parse(body);
+      } catch {
+        throw new Error(
+          `AniList returned non-JSON data (HTTP ${response.status}): ${body.slice(0, 300)}`
+        );
+      }
+
+      if (!response.ok || json.errors?.length) {
+        console.error('AniList request failed:', {
+          animeId,
+          httpStatus: response.status,
+          errors: json.errors,
+          rateLimitRemaining: response.headers.get('X-RateLimit-Remaining'),
+        });
+
+        throw new Error(
+          `AniList HTTP ${response.status}: ${
+            json.errors?.map((e) => e.message).join('; ') || 'Request failed'
+          }`
+        );
+      }
+
+      media = json.data?.Media ?? null;
+
+      if (!media) {
+        fetchError = `AniList returned no anime for ID ${animeId}.`;
+      } else {
+        // Populate SEO and formatting variables on success
+        seoTitle = `${media.title.english || media.title.romaji} | AVAR Database`;
+        
+        if (media.description) {
+          seoDesc = media.description.replace(/<[^>]*>?/gm, '').substring(0, 160) + '...';
+        }
+        seoImage = media.bannerImage || media.coverImage?.extraLarge || seoImage;
+
+        formattedFormat = (media.format || 'TV').replace('TV_SHORT', 'SHORT');
+        formattedSeason = `${media.season || ''} ${media.seasonYear || 'TBA'}`.trim();
+
+        if (media.status === 'RELEASING' && media.nextAiringEpisode) {
+          const seconds = media.nextAiringEpisode.timeUntilAiring;
+          if (seconds > 0) {
+              const d = Math.floor(seconds / 86400);
+              const h = Math.floor((seconds % 86400) / 3600);
+              countdownText = `New Ep ${media.nextAiringEpisode.episode} in ${d}d ${h}h`;
+          }
         }
       }
-    `;
-    
-    const response = await fetch('https://graphql.anilist.co', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, variables: { id: parseInt(id) } })
-    });
-    
-    const json = await response.json();
-    media = json.data?.Media;
-
-    if (media) {
-      seoTitle = `${media.title.english || media.title.romaji} | AVAR Database`;
-      
-      if (media.description) {
-        seoDesc = media.description.replace(/<[^>]*>?/gm, '').substring(0, 160) + '...';
-      }
-      seoImage = media.bannerImage || media.coverImage?.extraLarge || seoImage;
-
-      // Format data for the HTML template
-      formattedFormat = (media.format || 'TV').replace('TV_SHORT', 'SHORT');
-      formattedSeason = `${media.season || ''} ${media.seasonYear || 'TBA'}`.trim();
-
-      if (media.status === 'RELEASING' && media.nextAiringEpisode) {
-        const seconds = media.nextAiringEpisode.timeUntilAiring;
-        if (seconds > 0) {
-            const d = Math.floor(seconds / 86400);
-            const h = Math.floor((seconds % 86400) / 3600);
-            countdownText = `New Ep ${media.nextAiringEpisode.episode} in ${d}d ${h}h`;
-        }
-      }
+    } catch (error) {
+      console.error('Anime detail fetch failed:', error);
+      fetchError = error instanceof Error ? error.message : 'Unknown AniList error';
     }
-  } catch (error) {
-    console.error('Failed to fetch Anime data:', error);
   }
+} else {
+  fetchError = 'No anime ID provided in the URL parameters.';
 }
 ---
 
 <BaseLayout title={seoTitle} description={seoDesc} image={seoImage}>
   
   {!media ? (
-    <!-- Error State: Only shows if the server fails to fetch the media -->
+    <!-- Error State: Displays detailed diagnostic fetchError -->
     <div id="error-state" class="w-full max-w-5xl mx-auto px-6 py-24 flex flex-col items-center justify-center text-center space-y-6 min-h-[60vh]">
       <h2 class="text-3xl font-black uppercase tracking-widest text-red-500">Transmission Failed</h2>
-      <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Could not locate the requested media.</p>
+      <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">{fetchError}</p>
       <a href="/discover" class="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-bold uppercase tracking-widest text-white transition-colors">Return to Archives</a>
     </div>
   ) : (
@@ -226,7 +267,6 @@ if (id) {
     }
 
     if (malId && malId !== 'null') {
-      // 500ms delay protects against aggressive IP rate limits from Jikan
       setTimeout(() => fetchStreamingChannels(malId), 500); 
     } else {
       const statusText = document.getElementById('stream-status');

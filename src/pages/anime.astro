@@ -1,347 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// 1. Grab the ID directly from the URL during server rendering
+// 1. Grab the ID from the URL
 const id = Astro.url.searchParams.get('id');
 
-// 2. Set default fallbacks in case the ID is missing or the fetch fails
+// 2. Default Fallbacks
 let seoTitle = "Database | AVARHQ";
 let seoDesc = "View comprehensive anime metadata, release countdowns, and verified streaming platforms.";
-let seoImage = "/default-og-image.jpg"; // Replace with your actual default image path
+let seoImage = "/og-default.png"; 
 
-// 3. Fetch data Server-Side strictly for SEO meta tags
+let media = null;
+let countdownText = null;
+let formattedFormat = 'TV';
+let formattedSeason = 'TBA';
+
+// 3. Complete Server-Side Fetch (Replaces the client-side AniList fetch)
 if (id) {
   try {
-    const query = `
-      query ($id: Int) {
-        Media(id: $id, type: ANIME) {
-          title { english romaji }
-          description(asHtml: false)
-          bannerImage
-          coverImage { extraLarge }
-        }
-      }
-    `;
-    
-    const response = await fetch('https://graphql.anilist.co', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, variables: { id: parseInt(id) } })
-    });
-    
-    const json = await response.json();
-    const media = json.data?.Media;
-
-    if (media) {
-      seoTitle = `${media.title.english || media.title.romaji} | AVAR Database`;
-      
-      // Clean up AniList's description (remove HTML tags and truncate to 160 characters for Twitter/Discord)
-      if (media.description) {
-        seoDesc = media.description.replace(/<[^>]*>?/gm, '').substring(0, 160) + '...';
-      }
-      
-      // Prefer banner image for Twitter cards, fallback to cover poster
-      seoImage = media.bannerImage || media.coverImage?.extraLarge || seoImage;
-    }
-  } catch (error) {
-    console.error('Failed to fetch SEO data:', error);
-  }
-}
----
-
-<BaseLayout title={seoTitle} description={seoDesc} image={seoImage}>
-  <div id="loading-state" class="w-full max-w-5xl mx-auto px-6 py-24 flex flex-col items-center justify-center text-center space-y-6 min-h-[60vh]">
-    <div class="w-12 h-12 border-4 border-white/10 border-t-cyan-500 rounded-full animate-spin"></div>
-    <h2 class="text-xl font-black uppercase tracking-widest text-white">Loading Info...</h2>
-    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Querying AniList & Jikan Registries</p>
-  </div>
-
-  <div id="error-state" class="hidden w-full max-w-5xl mx-auto px-6 py-24 flex flex-col items-center justify-center text-center space-y-6 min-h-[60vh]">
-    <h2 class="text-3xl font-black uppercase tracking-widest text-red-500">Transmission Failed</h2>
-    <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Could not locate the requested media.</p>
-    <a href="/discover" class="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-bold uppercase tracking-widest text-white transition-colors">Return to Archives</a>
-  </div>
-
-  <article id="content-state" class="hidden w-full">
-    <!-- Hero Banner -->
-    <div class="w-full h-[40vh] md:h-[50vh] relative overflow-hidden bg-[#0a0c12]">
-      <img id="anime-banner" src="" alt="Banner" class="absolute inset-0 w-full h-full object-cover opacity-50" />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/80 to-transparent"></div>
-    </div>
-
-    <div class="max-w-6xl mx-auto px-6 -mt-32 md:-mt-48 relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 pb-24">
-      
-      <!-- Left Column: Poster & Quick Stats -->
-      <div class="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-6">
-        <div class="relative aspect-[2/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#13151f]">
-          <img id="anime-poster" src="" alt="Poster" class="w-full h-full object-cover" />
-        </div>
-        
-        <div class="flex flex-col gap-3 p-5 bg-[#13151f] border border-white/10 rounded-xl">
-          <div class="flex justify-between items-center border-b border-white/5 pb-2 text-xs font-bold uppercase tracking-widest">
-            <span class="text-gray-500">Format</span>
-            <span id="anime-format" class="text-white"></span>
-          </div>
-          <div class="flex justify-between items-center border-b border-white/5 pb-2 text-xs font-bold uppercase tracking-widest">
-            <span class="text-gray-500">Season</span>
-            <span id="anime-season" class="text-white"></span>
-          </div>
-          <div class="flex justify-between items-center border-b border-white/5 pb-2 text-xs font-bold uppercase tracking-widest">
-            <span class="text-gray-500">Episodes</span>
-            <span id="anime-episodes" class="text-white"></span>
-          </div>
-          <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
-            <span class="text-gray-500">Score</span>
-            <span id="anime-score" class="text-cyan-400"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Main Info & Streaming -->
-      <div class="w-full md:w-2/3 lg:w-3/4 flex flex-col pt-4 md:pt-16">
-        <div id="countdown-container" class="hidden mb-4">
-            <span id="anime-countdown" class="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded bg-cyan-900/40 border border-cyan-500/30 text-cyan-300"></span>
-        </div>
-
-        <div class="flex items-center gap-4 mb-3">
-          <button id="fav-btn" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-black uppercase tracking-widest text-gray-300 hover:text-white transition-all flex items-center gap-2">
-            <span id="fav-star" class="text-base text-gray-500">★</span>
-            <span id="fav-label">Add to Watchlist</span>
-          </button>
-        </div>
-        <h1 id="anime-title" class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-tight mb-4 drop-shadow-md"></h1>
-        
-        <div class="flex flex-wrap gap-2 mb-8" id="anime-genres"></div>
-
-        <div class="space-y-4 mb-12">
-          <h2 class="text-sm font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2">Synopsis</h2>
-          <div id="anime-desc" class="text-gray-400 text-sm md:text-base leading-relaxed space-y-4"></div>
-        </div>
-
-        <div class="space-y-4 p-6 bg-[#13151f] border border-white/10 rounded-xl">
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              Official Streaming Platforms
-            </h2>
-            <span id="stream-status" class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Querying Jikan...</span>
-          </div>
-          <div id="streaming-list" class="flex flex-wrap gap-3">
-             <span class="text-xs text-gray-500 animate-pulse font-bold uppercase tracking-widest">Searching verified channels...</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </article>
-</BaseLayout>
-
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-
-    if (!id) {
-      document.getElementById('loading-state').classList.add('hidden');
-      document.getElementById('error-state').classList.remove('hidden');
-      return;
-    }
-
-    try {
-      // 1. Fetch AniList Data using GraphQL (Now requesting idMal)
-      const query = `
-        query ($id: Int) {
-          Media(id: $id, type: ANIME) {
-            idMal
-            title { english romaji }
-            description(asHtml: true)
-            coverImage { extraLarge }
-            bannerImage
-            format season seasonYear episodes averageScore
-            genres
-            nextAiringEpisode { episode timeUntilAiring }
-          }
-        }
-      `;
-      
-      const aniRes = await fetch('https://graphql.anilist.co', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, variables: { id: parseInt(id) } })
-      });
-      
-      const aniData = await aniRes.json();
-      const media = aniData.data?.Media;
-
-      if (!media) throw new Error("Media not found");
-
-      const title = media.title.english || media.title.romaji;
-      const malId = media.idMal;
-
-      // Populate UI
-      document.title = `${title} | AVAR Database`;
-      document.getElementById('anime-title').textContent = title;
-      document.getElementById('anime-poster').src = media.coverImage.extraLarge;
-      document.getElementById('anime-banner').src = media.bannerImage || media.coverImage.extraLarge;
-      document.getElementById('anime-format').textContent = (media.format || 'TV').replace('TV_SHORT', 'SHORT');
-      document.getElementById('anime-season').textContent = `${media.season || ''} ${media.seasonYear || 'TBA'}`;
-      document.getElementById('anime-episodes').textContent = media.episodes || 'TBA';
-      document.getElementById('anime-score').textContent = media.averageScore ? `${media.averageScore}%` : 'N/A';
-      document.getElementById('anime-desc').innerHTML = media.description || 'No synopsis available in the registry.';
-      
-      const genreContainer = document.getElementById('anime-genres');
-      media.genres.forEach(g => {
-        const span = document.createElement('span');
-        span.className = 'text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300';
-        span.textContent = g;
-        genreContainer.appendChild(span);
-      });
-
-      if (media.nextAiringEpisode) {
-        const seconds = media.nextAiringEpisode.timeUntilAiring;
-        const d = Math.floor(seconds / (3600 * 24));
-        const h = Math.floor((seconds % (3600 * 24)) / 3600);
-        document.getElementById('anime-countdown').textContent = `Ep ${media.nextAiringEpisode.episode} in ${d}d ${h}h`;
-        document.getElementById('countdown-container').classList.remove('hidden');
-      }
-
-      // Show Content
-      document.getElementById('loading-state').classList.add('hidden');
-      document.getElementById('content-state').classList.remove('hidden');
-
-      // 2. Fetch Streaming Links from Jikan using exact MAL ID
-      if (malId) {
-        setTimeout(async () => {
-          try {
-            const detailRes = await fetch(`https://jikan.lucashdo.com/v1/anime/${malId}/full`);
-            if (!detailRes.ok) throw new Error("Jikan fetch failed");
-            
-            const detailJson = await detailRes.json();
-            const streams = detailJson?.data?.streaming || [];
-            
-            const listContainer = document.getElementById('streaming-list');
-            listContainer.innerHTML = '';
-
-            if (streams.length === 0) {
-              document.getElementById('stream-status').textContent = 'None Detected';
-              listContainer.innerHTML = '<span class="text-xs font-bold uppercase tracking-widest text-gray-500">Try searching on internet instead.</span>';
-           } else {
-              document.getElementById('stream-status').textContent = 'Verified';
-              streams.forEach(stream => {
-                const a = document.createElement('a');
-                a.href = stream.url;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.className = 'text-[10px] md:text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-gray-200 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/30 transition-colors flex items-center gap-2';
-                a.innerHTML = `<span>${stream.name}</span><span class="text-gray-500">↗</span>`;
-                listContainer.appendChild(a);
-              });
-              
-              // Add Regional Disclaimer
-              const disclaimer = document.createElement('div');
-              disclaimer.className = "w-full mt-2 text-[9px] font-bold text-gray-500 uppercase tracking-widest";
-              disclaimer.textContent = "* Availability varies by country";
-              listContainer.appendChild(disclaimer);
-            }
-          } catch (e) {
-            document.getElementById('stream-status').textContent = 'Unavailable';
-            document.getElementById('streaming-list').innerHTML = '<span class="text-xs font-bold uppercase tracking-widest text-gray-500">Try searching on internet instead.</span>';
-          }
-        }, 500); // Small 500ms delay ensures we don't trip Jikan's strict rate limits immediately on load
-      } else {
-        document.getElementById('stream-status').textContent = 'Unregistered';
-        document.getElementById('streaming-list').innerHTML = '<span class="text-xs font-bold uppercase tracking-widest text-gray-500">Try searching on internet instead.</span>';
-      }
-
-    } catch (error) {
-      document.getElementById('loading-state').classList.add('hidden');
-      document.getElementById('error-state').classList.remove('hidden');
-    }    
-  });
-
-  const FAV_KEY = 'avar_user_watchlist';
-
-  function getStoredWatchlist() {
-    try {
-      const data = localStorage.getItem(FAV_KEY);
-      return data ? JSON.parse(data) : [];
-    } catch {
-      return [];
-    }
-  }
-
-  function checkIsFavorite(animeId) {
-    const list = getStoredWatchlist();
-    // Compare as strings to prevent numeric vs string type mismatches
-    return list.some(item => String(item.id) === String(animeId));
-  }
-
-  function updateButtonUI(isFavorited) {
-    const star = document.getElementById('fav-star');
-    const label = document.getElementById('fav-label');
-    const btn = document.getElementById('fav-btn');
-
-    if (!star || !label || !btn) return;
-
-    if (isFavorited) {
-      star.className = 'text-base text-yellow-400 transition-colors';
-      label.textContent = 'In Watchlist';
-      btn.classList.add('border-yellow-500/40', 'bg-yellow-500/10');
-      btn.classList.remove('border-white/10', 'bg-white/5');
-    } else {
-      star.className = 'text-base text-gray-500 transition-colors';
-      label.textContent = 'Add to Watchlist';
-      btn.classList.remove('border-yellow-500/40', 'bg-yellow-500/10');
-      btn.classList.add('border-white/10', 'bg-white/5');
-    }
-  }
-
-  function setupWatchlistHandler(media) {
-    const btn = document.getElementById('fav-btn');
-    if (!btn || !media) return;
-
-    // Render initial state
-    let isCurrentlyFav = checkIsFavorite(media.id);
-    updateButtonUI(isCurrentlyFav);
-
-    // Overwrite any existing onclick handlers to avoid multiple triggers
-    btn.onclick = (e) => {
-      e.preventDefault();
-      let list = getStoredWatchlist();
-      isCurrentlyFav = checkIsFavorite(media.id);
-
-      if (isCurrentlyFav) {
-        list = list.filter(item => String(item.id) !== String(media.id));
-        isCurrentlyFav = false;
-      } else {
-        list.push({
-          id: Number(media.id),
-          title: media.title.english || media.title.romaji || 'Unknown Title',
-          cover: media.coverImage?.extraLarge || '',
-          format: media.format || 'TV',
-          status: media.status || 'UNKNOWN'
-        });
-        isCurrentlyFav = true;
-      }
-
-      localStorage.setItem(FAV_KEY, JSON.stringify(list));
-      updateButtonUI(isCurrentlyFav);
-    };
-  }
-
-  async function loadAnimeDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const rawId = urlParams.get('id');
-
-    if (!rawId) {
-      document.getElementById('loading-state')?.classList.add('hidden');
-      document.getElementById('error-state')?.classList.remove('hidden');
-      return;
-    }
-
-    const animeId = parseInt(rawId, 10);
-
     const query = `
       query ($id: Int) {
         Media(id: $id, type: ANIME) {
@@ -358,119 +33,269 @@ if (id) {
         }
       }
     `;
+    
+    const response = await fetch('https://graphql.anilist.co', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, variables: { id: parseInt(id) } })
+    });
+    
+    const json = await response.json();
+    media = json.data?.Media;
 
-    try {
-      const response = await fetch('https://graphql.anilist.co', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, variables: { id: animeId } })
-      });
+    if (media) {
+      seoTitle = `${media.title.english || media.title.romaji} | AVAR Database`;
+      
+      if (media.description) {
+        seoDesc = media.description.replace(/<[^>]*>?/gm, '').substring(0, 160) + '...';
+      }
+      seoImage = media.bannerImage || media.coverImage?.extraLarge || seoImage;
 
-      const resJson = await response.json();
-      const media = resJson.data?.Media;
+      // Format data for the HTML template
+      formattedFormat = (media.format || 'TV').replace('TV_SHORT', 'SHORT');
+      formattedSeason = `${media.season || ''} ${media.seasonYear || 'TBA'}`.trim();
 
-      if (!media) throw new Error('Not found');
-
-      const title = media.title.english || media.title.romaji;
-      document.title = `${title} | AVAR Database`;
-
-      // Populate base elements
-      const elTitle = document.getElementById('anime-title');
-      const elPoster = document.getElementById('anime-poster') as HTMLImageElement;
-      const elBanner = document.getElementById('anime-banner') as HTMLImageElement;
-      const elFormat = document.getElementById('anime-format');
-      const elSeason = document.getElementById('anime-season');
-      const elEpisodes = document.getElementById('anime-episodes');
-      const elScore = document.getElementById('anime-score');
-      const elDesc = document.getElementById('anime-desc');
-
-      if (elTitle) elTitle.textContent = title;
-      if (elPoster) elPoster.src = media.coverImage?.extraLarge || '';
-      if (elBanner) elBanner.src = media.bannerImage || media.coverImage?.extraLarge || '';
-      if (elFormat) elFormat.textContent = (media.format || 'TV').replace('TV_SHORT', 'SHORT');
-      if (elSeason) elSeason.textContent = `${media.season || ''} ${media.seasonYear || 'TBA'}`.trim();
-      if (elEpisodes) elEpisodes.textContent = media.episodes ? String(media.episodes) : 'TBA';
-      if (elScore) elScore.textContent = media.averageScore ? `${media.averageScore}%` : 'N/A';
-      if (elDesc) elDesc.innerHTML = media.description || 'No synopsis available in the registry.';
-
-      // Airing countdown
       if (media.status === 'RELEASING' && media.nextAiringEpisode) {
         const seconds = media.nextAiringEpisode.timeUntilAiring;
         if (seconds > 0) {
             const d = Math.floor(seconds / 86400);
             const h = Math.floor((seconds % 86400) / 3600);
-            const cdLabel = document.getElementById('anime-countdown');
-            const cdContainer = document.getElementById('countdown-container');
-            if (cdLabel) cdLabel.textContent = `New Ep ${media.nextAiringEpisode.episode} in ${d}d ${h}h`;
-            if (cdContainer) cdContainer.classList.remove('hidden');
+            countdownText = `New Ep ${media.nextAiringEpisode.episode} in ${d}d ${h}h`;
         }
       }
+    }
+  } catch (error) {
+    console.error('Failed to fetch Anime data:', error);
+  }
+}
+---
 
-      // Display Content Area
-      document.getElementById('loading-state')?.classList.add('hidden');
-      document.getElementById('content-state')?.classList.remove('hidden');
+<BaseLayout title={seoTitle} description={seoDesc} image={seoImage}>
+  
+  {!media ? (
+    <!-- Error State: Only shows if the server fails to fetch the media -->
+    <div id="error-state" class="w-full max-w-5xl mx-auto px-6 py-24 flex flex-col items-center justify-center text-center space-y-6 min-h-[60vh]">
+      <h2 class="text-3xl font-black uppercase tracking-widest text-red-500">Transmission Failed</h2>
+      <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Could not locate the requested media.</p>
+      <a href="/discover" class="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-bold uppercase tracking-widest text-white transition-colors">Return to Archives</a>
+    </div>
+  ) : (
+    <!-- Fully Populated Content State -->
+    <article id="content-state" class="w-full" data-mal-id={media.idMal} data-anime-id={media.id} data-anime-title={media.title.english || media.title.romaji} data-anime-cover={media.coverImage?.extraLarge || ''} data-anime-format={formattedFormat} data-anime-status={media.status}>
+      
+      <!-- Hero Banner -->
+      <div class="w-full h-[40vh] md:h-[50vh] relative overflow-hidden bg-[#0a0c12]">
+        <img src={media.bannerImage || media.coverImage?.extraLarge || ''} alt="Banner" class="absolute inset-0 w-full h-full object-cover opacity-50" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/80 to-transparent"></div>
+      </div>
 
-      // Initialize the Watchlist Button
-      setupWatchlistHandler(media);
+      <div class="max-w-6xl mx-auto px-6 -mt-32 md:-mt-48 relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 pb-24">
+        
+        <!-- Left Column: Poster & Quick Stats -->
+        <div class="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-6">
+          <div class="relative aspect-[2/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#13151f]">
+            <img src={media.coverImage?.extraLarge || ''} alt="Poster" class="w-full h-full object-cover" />
+          </div>
+          
+          <div class="flex flex-col gap-3 p-5 bg-[#13151f] border border-white/10 rounded-xl">
+            <div class="flex justify-between items-center border-b border-white/5 pb-2 text-xs font-bold uppercase tracking-widest">
+              <span class="text-gray-500">Format</span>
+              <span class="text-white">{formattedFormat}</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-white/5 pb-2 text-xs font-bold uppercase tracking-widest">
+              <span class="text-gray-500">Season</span>
+              <span class="text-white">{formattedSeason}</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-white/5 pb-2 text-xs font-bold uppercase tracking-widest">
+              <span class="text-gray-500">Episodes</span>
+              <span class="text-white">{media.episodes || 'TBA'}</span>
+            </div>
+            <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
+              <span class="text-gray-500">Score</span>
+              <span class="text-cyan-400">{media.averageScore ? `${media.averageScore}%` : 'N/A'}</span>
+            </div>
+          </div>
+        </div>
 
-      // Jikan Stream Retrieval
-      if (media.idMal) {
-        fetchStreamingChannels(media.idMal);
-      } else {
-        markStreamUnavailable();
+        <!-- Right Column: Main Info & Streaming -->
+        <div class="w-full md:w-2/3 lg:w-3/4 flex flex-col pt-4 md:pt-16">
+          
+          {countdownText && (
+            <div class="mb-4">
+                <span class="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded bg-cyan-900/40 border border-cyan-500/30 text-cyan-300">
+                  {countdownText}
+                </span>
+            </div>
+          )}
+
+          <div class="flex items-center gap-4 mb-3">
+            <button id="fav-btn" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-black uppercase tracking-widest text-gray-300 hover:text-white transition-all flex items-center gap-2">
+              <span id="fav-star" class="text-base text-gray-500">★</span>
+              <span id="fav-label">Add to Watchlist</span>
+            </button>
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-tight mb-4 drop-shadow-md">
+            {media.title.english || media.title.romaji}
+          </h1>
+          
+          <div class="flex flex-wrap gap-2 mb-8">
+            {media.genres?.map(g => (
+              <span class="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">
+                {g}
+              </span>
+            ))}
+          </div>
+
+          <div class="space-y-4 mb-12">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2">Synopsis</h2>
+            <div class="text-gray-400 text-sm md:text-base leading-relaxed space-y-4" set:html={media.description || 'No synopsis available in the registry.'}></div>
+          </div>
+
+          <div class="space-y-4 p-6 bg-[#13151f] border border-white/10 rounded-xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Official Streaming Platforms
+              </h2>
+              <span id="stream-status" class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Querying Jikan...</span>
+            </div>
+            <div id="streaming-list" class="flex flex-wrap gap-3">
+               <span class="text-xs text-gray-500 animate-pulse font-bold uppercase tracking-widest">Searching verified channels...</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+  )}
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const article = document.getElementById('content-state');
+    if (!article) return; // Exit if rendering the error state
+
+    // Read metadata passed securely from the server
+    const malId = article.getAttribute('data-mal-id');
+    const animeId = article.getAttribute('data-anime-id');
+    const animeTitle = article.getAttribute('data-anime-title');
+    const animeCover = article.getAttribute('data-anime-cover');
+    const animeFormat = article.getAttribute('data-anime-format');
+    const animeStatus = article.getAttribute('data-anime-status');
+
+    // --- STREAMING LINKS (Client-Side to avoid server rate limits) ---
+    async function fetchStreamingChannels(malId) {
+      const listContainer = document.getElementById('streaming-list');
+      const statusText = document.getElementById('stream-status');
+
+      try {
+        const res = await fetch(`https://api.jikan.moe/v4/anime/${malId}/full`);
+        if (!res.ok) throw new Error();
+
+        const json = await res.json();
+        const streams = json?.data?.streaming || [];
+
+        if (!listContainer) return;
+        listContainer.innerHTML = '';
+
+        if (streams.length === 0) {
+          if (statusText) statusText.textContent = 'None Detected';
+          listContainer.innerHTML = '<span class="text-xs font-bold uppercase tracking-widest text-gray-500">Try searching on internet instead.</span>';
+        } else {
+          if (statusText) statusText.textContent = 'Verified';
+          streams.forEach(st => {
+            const a = document.createElement('a');
+            a.href = st.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'text-[10px] md:text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-gray-200 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/30 transition-colors flex items-center gap-2';
+            a.innerHTML = `<span>${st.name}</span><span class="text-gray-500">↗</span>`;
+            listContainer.appendChild(a);
+          });
+          
+          const disclaimer = document.createElement('div');
+          disclaimer.className = "w-full mt-2 text-[9px] font-bold text-gray-500 uppercase tracking-widest";
+          disclaimer.textContent = "* Availability varies by country";
+          listContainer.appendChild(disclaimer);
+        }
+      } catch {
+        if (statusText) statusText.textContent = 'Unavailable';
+        if (listContainer) listContainer.innerHTML = '<span class="text-xs font-bold uppercase tracking-widest text-gray-500">Try searching on internet instead.</span>';
       }
-
-    } catch (err) {
-      document.getElementById('loading-state')?.classList.add('hidden');
-      document.getElementById('error-state')?.classList.remove('hidden');
     }
-  }
 
-  async function fetchStreamingChannels(malId) {
-    const listContainer = document.getElementById('streaming-list');
-    const statusText = document.getElementById('stream-status');
+    if (malId && malId !== 'null') {
+      // 500ms delay protects against aggressive IP rate limits from Jikan
+      setTimeout(() => fetchStreamingChannels(malId), 500); 
+    } else {
+      const statusText = document.getElementById('stream-status');
+      const listContainer = document.getElementById('streaming-list');
+      if (statusText) statusText.textContent = 'Unregistered';
+      if (listContainer) listContainer.innerHTML = '<span class="text-xs font-bold uppercase tracking-widest text-gray-500">Try searching on internet instead.</span>';
+    }
 
-    try {
-      const res = await fetch(`https://api.jikan.moe/v4/anime/${malId}/full`);
-      if (!res.ok) throw new Error();
+    // --- WATCHLIST LOGIC (Client-Side) ---
+    const FAV_KEY = 'avar_user_watchlist';
 
-      const json = await res.json();
-      const streams = json?.data?.streaming || [];
-
-      if (!listContainer) return;
-      listContainer.innerHTML = '';
-
-      if (streams.length === 0) {
-        if (statusText) statusText.textContent = 'None Detected';
-        listContainer.innerHTML = '<span class="text-xs font-bold uppercase tracking-widest text-gray-500">Try searching on internet instead.</span>';
-      } else {
-        if (statusText) statusText.textContent = 'Verified';
-        streams.forEach(st => {
-          const a = document.createElement('a');
-          a.href = st.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.className = 'text-[10px] md:text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-gray-200 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/30 transition-colors flex items-center gap-2';
-          a.innerHTML = `<span>${st.name}</span><span class="text-gray-500">↗</span>`;
-          listContainer.appendChild(a);
-        });
+    function getStoredWatchlist() {
+      try {
+        return JSON.parse(localStorage.getItem(FAV_KEY)) || [];
+      } catch {
+        return [];
       }
-    } catch {
-      markStreamUnavailable();
     }
-  }
 
-  function markStreamUnavailable() {
-    const statusText = document.getElementById('stream-status');
-    const listContainer = document.getElementById('streaming-list');
-    if (statusText) statusText.textContent = 'Unavailable';
-    if (listContainer) {
-      listContainer.innerHTML = '<span class="text-xs font-bold uppercase tracking-widest text-gray-500">Try searching on internet instead.</span>';
+    function checkIsFavorite(id) {
+      return getStoredWatchlist().some(item => String(item.id) === String(id));
     }
-  }
 
-  // Bind to standard initial load and Astro client-side navigation
-  loadAnimeDetails();
-  document.addEventListener('astro:page-load', loadAnimeDetails);
+    function updateButtonUI(isFavorited) {
+      const star = document.getElementById('fav-star');
+      const label = document.getElementById('fav-label');
+      const btn = document.getElementById('fav-btn');
 
+      if (!star || !label || !btn) return;
+
+      if (isFavorited) {
+        star.className = 'text-base text-yellow-400 transition-colors';
+        label.textContent = 'In Watchlist';
+        btn.classList.add('border-yellow-500/40', 'bg-yellow-500/10');
+        btn.classList.remove('border-white/10', 'bg-white/5');
+      } else {
+        star.className = 'text-base text-gray-500 transition-colors';
+        label.textContent = 'Add to Watchlist';
+        btn.classList.remove('border-yellow-500/40', 'bg-yellow-500/10');
+        btn.classList.add('border-white/10', 'bg-white/5');
+      }
+    }
+
+    const btn = document.getElementById('fav-btn');
+    if (btn) {
+      let isCurrentlyFav = checkIsFavorite(animeId);
+      updateButtonUI(isCurrentlyFav);
+
+      btn.onclick = (e) => {
+        e.preventDefault();
+        let list = getStoredWatchlist();
+        isCurrentlyFav = checkIsFavorite(animeId);
+
+        if (isCurrentlyFav) {
+          list = list.filter(item => String(item.id) !== String(animeId));
+          isCurrentlyFav = false;
+        } else {
+          list.push({
+            id: Number(animeId),
+            title: animeTitle,
+            cover: animeCover,
+            format: animeFormat,
+            status: animeStatus
+          });
+          isCurrentlyFav = true;
+        }
+        localStorage.setItem(FAV_KEY, JSON.stringify(list));
+        updateButtonUI(isCurrentlyFav);
+      };
+    }
+  });
 </script>

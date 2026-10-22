@@ -17,7 +17,7 @@ if (!discussionNumber) {
 // Single-item GraphQL query targeted directly at this discussion number
 const query = `
   query($number: Int!) {
-    repository(owner: "jayantur13", name: "avarhq") {
+    repository(owner: "jayantur13", name: "avardata") {
       discussion(number: $number) {
         number
         title

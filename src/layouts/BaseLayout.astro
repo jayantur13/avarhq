@@ -16,7 +16,7 @@ const {
   description = "AVARHQ is a custom-built digital mirror and expanded archive providing an unfiltered, highly-curated database of the anime industry's highest quality drops.",
   image = "/og-default.png", // Make sure to place a default image in your /public folder
   type = "website",
-  canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://avarhq.com')
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://avarhq.vercel.app')
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -147,7 +147,8 @@ const {
         
         setTimeout(() => {
           ageGate.style.display = 'none';
-          document.body.style.overflow = ''; // Unlock page!
+          document.body.style.overflow = ''; // Unlocks inline style
+          document.body.classList.remove('avar-entry-open'); // STRIPS THE CSS LOCK!
         }, 500); 
       };
     }

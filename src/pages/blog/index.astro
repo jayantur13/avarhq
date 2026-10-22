@@ -13,7 +13,7 @@ function generateSlug(title) {
 
 const query = `
   query {
-    repository(owner: "jayantur13", name: "avarhq") {
+    repository(owner: "jayantur13", name: "avardata") {
       pinnedDiscussions(first: 5) {
         nodes {
           discussion {
@@ -50,7 +50,7 @@ let pinnedPosts = [];
 let regularPosts = [];
 
 try {
-  const token =  import.meta.env.DISCUSS;
+  const token =  import.meta.env.DISCUSS || import.meta.env.GITHUB_TOKEN;
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {

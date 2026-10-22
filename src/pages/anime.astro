@@ -7,7 +7,7 @@ const id = Astro.url.searchParams.get('id');
 // 2. Default Fallbacks
 let seoTitle = "Database | AVARHQ";
 let seoDesc = "View comprehensive anime metadata, release countdowns, and verified streaming platforms.";
-let seoImage = "/default-og-image.jpg"; 
+let seoImage = "/og-default.png"; 
 
 let media = null;
 let countdownText = null;
@@ -114,17 +114,14 @@ if (id) {
 <BaseLayout title={seoTitle} description={seoDesc} image={seoImage}>
   
   {!media ? (
-    <!-- Error State: Displays detailed diagnostic fetchError -->
     <div id="error-state" class="w-full max-w-5xl mx-auto px-6 py-24 flex flex-col items-center justify-center text-center space-y-6 min-h-[60vh]">
       <h2 class="text-3xl font-black uppercase tracking-widest text-red-500">Transmission Failed</h2>
       <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">{fetchError}</p>
       <a href="/discover" class="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-xs font-bold uppercase tracking-widest text-white transition-colors">Return to Archives</a>
     </div>
   ) : (
-    <!-- Fully Populated Content State -->
     <article id="content-state" class="w-full" data-mal-id={media.idMal} data-anime-id={media.id} data-anime-title={media.title.english || media.title.romaji} data-anime-cover={media.coverImage?.extraLarge || ''} data-anime-format={formattedFormat} data-anime-status={media.status}>
       
-      <!-- Hero Banner -->
       <div class="w-full h-[40vh] md:h-[50vh] relative overflow-hidden bg-[#0a0c12]">
         <img src={media.bannerImage || media.coverImage?.extraLarge || ''} alt="Banner" class="absolute inset-0 w-full h-full object-cover opacity-50" />
         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/80 to-transparent"></div>
@@ -132,7 +129,6 @@ if (id) {
 
       <div class="max-w-6xl mx-auto px-6 -mt-32 md:-mt-48 relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 pb-24">
         
-        <!-- Left Column: Poster & Quick Stats -->
         <div class="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-6">
           <div class="relative aspect-[2/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#13151f]">
             <img src={media.coverImage?.extraLarge || ''} alt="Poster" class="w-full h-full object-cover" />
@@ -158,7 +154,6 @@ if (id) {
           </div>
         </div>
 
-        <!-- Right Column: Main Info & Streaming -->
         <div class="w-full md:w-2/3 lg:w-3/4 flex flex-col pt-4 md:pt-16">
           
           {countdownText && (
@@ -181,7 +176,7 @@ if (id) {
           </h1>
           
           <div class="flex flex-wrap gap-2 mb-8">
-            {media.genres?.map(g => (
+            {media.genres?.map((g: string) => (
               <span class="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">
                 {g}
               </span>

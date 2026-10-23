@@ -155,16 +155,17 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
             </div>
         )}
 
-        <!-- NEW EPISODES / AIRING TODAY GRID -->
+    <!-- NEW EPISODES / AIRING TODAY GRID -->
         <section>
     <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-6">
         <h2 class="text-2xl font-bold uppercase tracking-wide text-white">New Episodes Today</h2>
     </div>
 
-    {airingToday.slice(5).length > 0 ? (
+    {airingToday.length > 0 ? (
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {airingToday.slice(5).map((anime) => {
-                const cd = formatCountdown(anime.next_ep_time, anime.status || 'RELEASING');
+            {airingToday.map((anime) => {
+                // Updated to use the absolute Unix timestamp
+                const cd = formatCountdown(anime.airing_at, anime.status || 'RELEASING');
                 return (
                     <a href={`/anime?id=${anime.id}&title=${encodeURIComponent(getTitle(anime))}`} class="group relative aspect-[2/3] rounded-2xl overflow-hidden bg-[#13151f] border border-white/5 hover:-translate-y-1 hover:border-red-500/50 transition-all duration-300">
                         <img src={anime.cover_image || ''} class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" />
@@ -182,13 +183,12 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
             })}
         </div>
     ) : (
-        /* Fallback content when no elements remain after slicing */
+        /* Fallback content when no elements remain */
         <div class="flex items-center justify-center p-12 text-center border border-white/5 rounded-2xl bg-[#13151f]/50">
             <p class="text-white/40 text-sm font-medium tracking-wide uppercase">No new episodes available right now</p>
         </div>
     )}
 </section>
-
 
         <!-- ACTIVE STREAM (Strictly Releasing) -->
         {activeNow.length > 0 && (

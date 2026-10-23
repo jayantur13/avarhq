@@ -226,7 +226,7 @@ if (id) {
       const statusText = document.getElementById('stream-status');
 
       try {
-        const res = await fetch(`https://api.jikan.moe/v4/anime/${malId}/full`);
+        const res = await fetch(`https://jikan.lucashdo.com/v1/anime/${malId}/full`);
         if (!res.ok) throw new Error();
 
         const json = await res.json();

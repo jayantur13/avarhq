@@ -15,8 +15,14 @@ const dailyData = dailyRes.ok ? await dailyRes.json() : {};
 const airingTodayData = airingRes.ok ? await airingRes.json() : [];
 
 // Extract metadata and arrays
+// Extract metadata and arrays
 const lastUpdated = dailyData.metadata?.last_updated || 'Recently';
-const airingToday = Array.isArray(airingTodayData) ? airingTodayData : (airingTodayData.data || []);
+const rawAiringToday = Array.isArray(airingTodayData) ? airingTodayData : (airingTodayData.data || []);
+
+const nowUnix = Math.floor(Date.now() / 1000);
+
+// Filter out anime that have already aired today
+const airingToday = rawAiringToday.filter(anime => anime.airing_at > nowUnix);
 
 // Filter Active Stream strictly to RELEASING status
 const activeNow = (dailyData.active_now || []).filter(anime => anime.status === 'RELEASING');
@@ -27,11 +33,16 @@ const trendingTop10 = (dailyData.trending_top10 || [])
   .slice(0, 10);
   
 const birthdays = dailyData.birthdays || [];
-const bingeProfiles = dailyData.binge_profiles || []; // Added for space if needed
+const bingeProfiles = dailyData.binge_profiles || []; 
 
 // Helper Functions
-const formatCountdown = (seconds, status) => {
-  if (status !== 'RELEASING' || !seconds || seconds <= 0) return null;
+const formatCountdown = (airingAt, status) => {
+  if (status !== 'RELEASING' || !airingAt) return null;
+  
+  // Calculate live seconds remaining based on the absolute timestamp
+  const seconds = airingAt - Math.floor(Date.now() / 1000);
+  if (seconds <= 0) return null; // Failsafe
+
   const w = Math.floor(seconds / (3600 * 24 * 7));
   const d = Math.floor((seconds % (3600 * 24 * 7)) / (3600 * 24));
   const h = Math.floor((seconds % (3600 * 24)) / 3600);
@@ -97,7 +108,7 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
             <div class="relative w-full h-[460px] md:h-[60vh] rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10">
                 <div id="hero-carousel" class="w-full h-full relative">
                     {airingToday.slice(0, 5).map((heroItem, index) => {
-                        const countdownText = formatCountdown(heroItem.next_ep_time, heroItem.status || 'RELEASING');
+                       const countdownText = formatCountdown(heroItem.airing_at, heroItem.status || 'RELEASING');
                         return (
                         <a href={`/anime?id=${heroItem.id}&title=${encodeURIComponent(getTitle(heroItem))}`} 
                            class={`carousel-item absolute inset-0 transition-opacity duration-1000 ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>

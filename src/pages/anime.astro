@@ -94,10 +94,21 @@ if (id) {
 
         if (media.status === 'RELEASING' && media.nextAiringEpisode) {
           const seconds = media.nextAiringEpisode.timeUntilAiring;
-          if (seconds > 0) {
+          
+          if (seconds <= 0) {
+              countdownText = `Ep ${media.nextAiringEpisode.episode} Just Dropped`;
+          } else {
               const d = Math.floor(seconds / 86400);
               const h = Math.floor((seconds % 86400) / 3600);
-              countdownText = `New Ep ${media.nextAiringEpisode.episode} in ${d}d ${h}h`;
+              const m = Math.floor((seconds % 3600) / 60);
+              
+              if (d > 0) {
+                  countdownText = `New Ep ${media.nextAiringEpisode.episode} in ${d}d ${h}h`;
+              } else if (h > 0) {
+                  countdownText = `New Ep ${media.nextAiringEpisode.episode} in ${h}h ${m}m`;
+              } else {
+                  countdownText = `New Ep ${media.nextAiringEpisode.episode} in ${m}m`;
+              }
           }
         }
       }

@@ -22,7 +22,7 @@ const rawAiringToday = Array.isArray(airingTodayData) ? airingTodayData : (airin
 const nowUnix = Math.floor(Date.now() / 1000);
 
 // Filter out anime that have already aired today
-const airingToday = rawAiringToday.filter(anime => anime.airing_at > nowUnix);
+const airingToday = rawAiringToday;
 
 // Filter Active Stream strictly to RELEASING status
 const activeNow = (dailyData.active_now || []).filter(anime => anime.status === 'RELEASING');
@@ -41,15 +41,20 @@ const formatCountdown = (airingAt, status) => {
   
   // Calculate live seconds remaining based on the absolute timestamp
   const seconds = airingAt - Math.floor(Date.now() / 1000);
-  if (seconds <= 0) return null; // Failsafe
+  
+  // If the timer hits zero or goes negative, keep the badge but update the text
+  if (seconds <= 0) return 'Just Dropped'; 
 
   const w = Math.floor(seconds / (3600 * 24 * 7));
   const d = Math.floor((seconds % (3600 * 24 * 7)) / (3600 * 24));
   const h = Math.floor((seconds % (3600 * 24)) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+
   if (w > 0) return `${w}w ${d}d`;
   if (d > 0) return `${d}d ${h}h`;
-  if (h > 0) return `${h}h`;
-  return 'Soon';
+  if (h > 0) return `${h}h ${m}m`; // Adds minutes if under 24h
+  if (m > 0) return `${m}m`;       // Shows just minutes if under 1h
+  return 'Just Dropped';
 };
 
 function formatTimestamp(isoString) {
@@ -172,7 +177,7 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/50 to-transparent"></div>
                         {cd && (
                             <div class="absolute top-3 right-3 bg-red-500/90 backdrop-blur-md border border-white/10 text-[9px] text-white font-black px-2 py-1 rounded uppercase tracking-widest">
-                                In {cd}
+                                {cd === "Just Dropped" ? cd : `In ${cd}`}
                             </div>
                         )}
                         <div class="absolute bottom-0 left-0 p-5 w-full text-white">

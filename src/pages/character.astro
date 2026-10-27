@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const id = Astro.url.searchParams.get('id');
+const fallbackName = Astro.url.searchParams.get('name') || 'Character Profile';
+
+let charData = null;
+let description = 'Loading bio...';
+let appearances = [];
+
+if (id) {
+    // Fetch live data directly from AniList via GraphQL
+    const query = `
+        query ($id: Int) {
+          Character(id: $id) {
+            id
+            name {
+              full
+              native
+            }
+            image {
+              large
+            }
+            description(asHtml: true)
+            favourites
+            dateOfBirth {
+              month
+              day
+            }
+            media(page: 1, perPage: 6, sort: POPULARITY_DESC, type: ANIME) {
+              edges {
+                node {
+                  id
+                  title {
+                    english
+                    romaji
+                  }
+                  coverImage {
+                    large
+                  }
+                  format
+                }
+              }
+            }
+          }
+        }
+    `;
+    
+    try {
+        const res = await fetch('https://graphql.anilist.co', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ query, variables: { id: parseInt(id) } })
+        });
+        const json = await res.json();
+        
+        if (json.data && json.data.Character) {
+            charData = json.data.Character;
+            description = charData.description || 'No biography available for this character.';
+            appearances = charData.media?.edges.map(e => e.node) || [];
+        }
+    } catch (e) {
+        console.error("Error fetching character live data:", e);
+        description = 'Failed to load character data. Please try again later.';
+    }
+}
+
+// Helper to format the Anime titles cleanly
+const getTitle = (anime) => anime?.title?.english || anime?.title?.romaji || 'Unknown Anime';
+---
+
+<BaseLayout title={charData ? `${charData.name.full} | AVAR` : fallbackName}>
+    {!id || !charData ? (
+        <div class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
+            <h1 class="text-3xl font-black text-white uppercase tracking-widest mb-4">Character Not Found</h1>
+            <p class="text-gray-400">We couldn't locate the data for this character.</p>
+            <a href="/" class="mt-8 px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-black uppercase tracking-widest rounded-full transition-all">Return Home</a>
+        </div>
+    ) : (
+        <div class="pb-20">
+            <!-- HERO HEADER: Blurred Background with Overlay -->
+            <div class="relative h-[40vh] w-full overflow-hidden bg-[#0a0c12]">
+                <img src={charData.image.large} alt={charData.name.full} class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/80 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#0a0c12] via-transparent to-transparent opacity-80"></div>
+            </div>
+
+            <!-- PROFILE CONTENT: Overlapping the Hero -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-32 relative z-10">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    
+                    <!-- Portrait (Left Column) -->
+                    <div class="w-48 md:w-64 flex-shrink-0 group relative rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl shadow-black/80 bg-[#13151f]">
+                        <img src={charData.image.large} alt={charData.name.full} class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-4 flex justify-between items-end">
+                            <span class="text-yellow-500 font-bold text-sm drop-shadow-md tracking-widest">
+                                ❤️ {charData.favourites.toLocaleString()}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Details (Right Column) -->
+                    <div class="flex-grow pt-2 md:pt-16">
+                        <div class="flex items-center gap-3 mb-2">
+                            {charData.dateOfBirth?.month && charData.dateOfBirth?.day && (
+                                <span class="bg-yellow-500 text-black text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded shadow-lg">
+                                    🎂 Born {new Date(2000, charData.dateOfBirth.month - 1, charData.dateOfBirth.day).toLocaleString('default', { month: 'long', day: 'numeric' })}
+                                </span>
+                            )}
+                        </div>
+                        
+                        <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-2">
+                            {charData.name.full}
+                        </h1>
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-500 tracking-widest mb-8">
+                            {charData.name.native || ''}
+                        </h2>
+
+                        <!-- Description Box (Parsed HTML) -->
+                        <div class="prose prose-invert prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-cyan-400 max-w-4xl bg-[#13151f] p-6 rounded-2xl border border-white/5 shadow-lg">
+                            <Fragment set:html={description} />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- APPEARANCES GRID -->
+                {appearances.length > 0 && (
+                    <div class="mt-16">
+                        <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-6">
+                            <h2 class="text-2xl font-bold uppercase tracking-wide text-white">Appears In</h2>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+                            {appearances.map((anime) => (
+                                <a href={`/anime?id=${anime.id}&title=${encodeURIComponent(getTitle(anime))}`} class="group relative aspect-[2/3] rounded-xl overflow-hidden bg-[#13151f] border border-white/5 hover:-translate-y-1 hover:border-cyan-500/50 transition-all duration-300">
+                                    <img src={anime.coverImage.large} alt={getTitle(anime)} class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/40 to-transparent"></div>
+                                    <div class="absolute bottom-0 left-0 p-3 w-full text-white">
+                                        <h3 class="text-xs font-black uppercase leading-tight line-clamp-2">{getTitle(anime)}</h3>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    )}
+</BaseLayout>

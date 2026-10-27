@@ -5,6 +5,7 @@ import RandomEntry from '../components/RandomEntry.astro';
 const BASE_RES = import.meta.env.BASE_URL_FILE;
 const f1 = 'daily.json';
 const f2 = 'airing_today_reel.json';
+
 // Fetch live data concurrently
 const [dailyRes, airingRes] = await Promise.all([
   fetch(`${BASE_RES}/${f1}`),
@@ -15,16 +16,8 @@ const dailyData = dailyRes.ok ? await dailyRes.json() : {};
 const airingTodayData = airingRes.ok ? await airingRes.json() : [];
 
 // Extract metadata and arrays
-// Extract metadata and arrays
 const lastUpdated = dailyData.metadata?.last_updated || 'Recently';
-const rawAiringToday = Array.isArray(airingTodayData) ? airingTodayData : (airingTodayData.data || []);
-
-const nowUnix = Math.floor(Date.now() / 1000);
-
-// Filter out anime that have already aired today
-const airingToday = rawAiringToday;
-
-// Filter Active Stream strictly to RELEASING status
+const airingToday = Array.isArray(airingTodayData) ? airingTodayData : (airingTodayData.data || []);
 const activeNow = (dailyData.active_now || []).filter(anime => anime.status === 'RELEASING');
 
 // Sort Top 10 strictly by average_score
@@ -37,12 +30,10 @@ const bingeProfiles = dailyData.binge_profiles || [];
 
 // Helper Functions
 const formatCountdown = (airingAt, status) => {
-  if (status !== 'RELEASING' || !airingAt) return null;
+  if (status !== 'RELEASING' || !airingAt || isNaN(airingAt)) return null;
   
-  // Calculate live seconds remaining based on the absolute timestamp
-  const seconds = airingAt - Math.floor(Date.now() / 1000);
+  const seconds = Number(airingAt) - Math.floor(Date.now() / 1000);
   
-  // If the timer hits zero or goes negative, keep the badge but update the text
   if (seconds <= 0) return 'Just Dropped'; 
 
   const w = Math.floor(seconds / (3600 * 24 * 7));
@@ -52,33 +43,31 @@ const formatCountdown = (airingAt, status) => {
 
   if (w > 0) return `${w}w ${d}d`;
   if (d > 0) return `${d}d ${h}h`;
-  if (h > 0) return `${h}h ${m}m`; // Adds minutes if under 24h
-  if (m > 0) return `${m}m`;       // Shows just minutes if under 1h
+  if (h > 0) return `${h}h ${m}m`;
+  if (m > 0) return `${m}m`;
   return 'Just Dropped';
 };
 
 function formatTimestamp(isoString) {
   const date = new Date(isoString);
-  
   return new Intl.DateTimeFormat('en-US', {
-    dateStyle: 'medium', // Options: 'short', 'medium', 'long', 'full'
-    timeStyle: 'short'  // Options: 'short', 'medium', 'long', 'full'
+    dateStyle: 'medium',
+    timeStyle: 'short' 
   }).format(date);
 }
 
 function formatDateUTC(dateStr) {
-  const date = new Date(dateStr); // "2026-10-20" is parsed as UTC midnight
-  
+  const date = new Date(dateStr); 
   return new Intl.DateTimeFormat('en-US', {
     dateStyle: 'short',
-    timeZone: 'UTC' // Forces the formatting to stay in UTC
+    timeZone: 'UTC' 
   }).format(date);
 }
 
 const heroDroppingStatus = airingTodayData.date === new Date().toISOString().split('T')[0] ? "Airing Today" : "Already Aired";
 
 const getTitle = (anime) => anime?.title_english || anime?.title_romaji || 'Unknown Title';
-const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT", "SHORT")} • ${anime?.season || ''} ${anime?.season_year || ''}`.replace(/^[•\s]+|[•\s]+$/g, '').trim();
+const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT", "SHORT")} • ${anime?.season || ''} ${anime?.season_year || ''}`.replace(/^[•\s]+|[•\s]+$/g, '').trim(); 
 ---
 
 <BaseLayout
@@ -113,7 +102,10 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
             <div class="relative w-full h-[460px] md:h-[60vh] rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10">
                 <div id="hero-carousel" class="w-full h-full relative">
                     {airingToday.slice(0, 5).map((heroItem, index) => {
-                       const countdownText = formatCountdown(heroItem.airing_at, heroItem.status || 'RELEASING');
+                        // Safely calculates the absolute timestamp
+                        const targetTime = heroItem.airing_at || (heroItem.next_ep_time ? lastUpdatedUnix + heroItem.next_ep_time : null);
+                        const countdownText = formatCountdown(targetTime, heroItem.status || 'RELEASING');
+                        
                         return (
                         <a href={`/anime?id=${heroItem.id}&title=${encodeURIComponent(getTitle(heroItem))}`} 
                            class={`carousel-item absolute inset-0 transition-opacity duration-1000 ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
@@ -139,7 +131,7 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
                                 <div class="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm font-bold tracking-widest uppercase mt-1">
                                     {countdownText && (
                                         <span class="text-cyan-400 bg-cyan-900/40 px-2.5 md:px-3 py-1 rounded border border-cyan-500/30 flex items-center gap-1.5 md:gap-2 text-[11px] md:text-xs">
-                                           {formatDateUTC(airingTodayData.date)} <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span> Ep {heroItem.next_ep}: {countdownText}
+                                            {formatDateUTC(airingTodayData.date)} <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span> Ep {heroItem.next_ep}: {countdownText}
                                         </span>
                                     )}
                                     <span class="text-gray-400 hover:text-cyan-400 text-[10px] md:text-xs tracking-widest font-black uppercase transition-colors flex items-center gap-1">
@@ -160,6 +152,59 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
             </div>
         )}
 
+    <!-- TODAY'S BIRTHDAYS (Card Carousel) -->
+        {birthdays.length > 0 && (
+            <section>
+                <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-6">
+                    <h2 class="text-2xl font-bold uppercase tracking-wide text-white">Today's Birthdays</h2>
+                    <span class="text-xs text-yellow-500 font-bold tracking-widest uppercase px-0 py-1">Happy Birthday 🎂</span>
+                </div>
+                
+                <div class="relative group">
+                    <!-- Left Arrow -->
+                    <button id="bday-left" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-12 h-12 bg-[#0a0c12] hover:bg-yellow-500 text-white border border-white/10 hover:border-yellow-400 rounded-full items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.8)] focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+
+                    <!-- Scroll Container -->
+                    <div id="bday-scroll" class="flex overflow-x-auto gap-5 pb-4 snap-x snap-mandatory scroll-smooth hide-scrollbar relative z-10">
+                        {birthdays.map((char) => (
+                            <a href={`/character?id=${char.id}&name=${encodeURIComponent(char.name)}`} 
+                               class="snap-start flex-shrink-0 w-56 group/card relative rounded-2xl overflow-hidden bg-[#13151f] border border-white/5 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col shadow-lg">
+                                
+                                <!-- Image Top Half (Square) -->
+                                <div class="relative w-full aspect-square overflow-hidden bg-black/50">
+                                    <img src={char.image_url || ''} alt={char.name} class="absolute inset-0 w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500" loading="lazy" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-[#13151f] to-transparent"></div>
+                                    <div class="absolute bottom-3 left-3 flex items-center gap-1">
+                                        <span class="text-xl drop-shadow-md">🎂</span>
+                                    </div>
+                                </div>
+
+                                <!-- Info Bottom Half -->
+                                <div class="p-5 flex flex-col flex-grow justify-start border-t border-white/5">
+                                    <h3 class="text-lg font-black uppercase leading-tight line-clamp-1 text-white">{char.name}</h3>
+                                    <p class="text-[10px] text-gray-400 mt-1 font-bold tracking-widest uppercase line-clamp-1 block">
+                                        {char.title_english || char.title_romaji || 'Unknown Anime'}
+                                    </p>
+                                    
+                                    <div class="mt-5 inline-flex items-center text-[10px] text-yellow-500 font-black uppercase tracking-widest gap-1.5 group-hover/card:text-yellow-400 transition-colors">
+                                        View Profile 
+                                        <svg class="w-3 h-3 group-hover/card:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    </div>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+
+                    <!-- Right Arrow -->
+                    <button id="bday-right" class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-12 h-12 bg-[#0a0c12] hover:bg-yellow-500 text-white border border-white/10 hover:border-yellow-400 rounded-full items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.8)] focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </section>
+        )}
+
     <!-- NEW EPISODES / AIRING TODAY GRID -->
         <section>
     <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-6">
@@ -170,7 +215,8 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             {airingToday.map((anime) => {
                 // Updated to use the absolute Unix timestamp
-                const cd = formatCountdown(anime.airing_at, anime.status || 'RELEASING');
+                const targetTime = anime.airing_at || (anime.next_ep_time ? lastUpdatedUnix + anime.next_ep_time : null);
+                const cd = formatCountdown(targetTime, anime.status || 'RELEASING');
                 return (
                     <a href={`/anime?id=${anime.id}&title=${encodeURIComponent(getTitle(anime))}`} class="group relative aspect-[2/3] rounded-2xl overflow-hidden bg-[#13151f] border border-white/5 hover:-translate-y-1 hover:border-red-500/50 transition-all duration-300">
                         <img src={anime.cover_image || ''} class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" />
@@ -195,30 +241,24 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
     )}
 </section>
 
-        <!-- ACTIVE STREAM (Strictly Releasing) -->
+<!-- ACTIVE STREAM (Strictly Releasing) -->
         {activeNow.length > 0 && (
             <section>
                 <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-6">
                     <h2 class="text-2xl font-bold uppercase tracking-wide text-white">Active Stream</h2>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {activeNow.slice(0, 8).map((anime) => {
-                        const cd = formatCountdown(anime.next_ep_time, anime.status || 'RELEASING');
-                        return (
+                    {activeNow.map((anime) => (
                         <a href={`/anime?id=${anime.id}&title=${encodeURIComponent(getTitle(anime))}`} class="group relative aspect-[2/3] rounded-2xl overflow-hidden bg-[#13151f] border border-white/5 hover:-translate-y-1 hover:border-cyan-500/50 transition-all duration-300">
                             <img src={anime.cover_image || ''} class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" />
                             <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c12] via-[#0a0c12]/50 to-transparent"></div>
-                            {cd && (
-                                <div class="absolute top-3 right-3 bg-black/80 backdrop-blur-md border border-white/10 text-[9px] text-cyan-400 font-black px-2 py-1 rounded uppercase tracking-widest shadow-lg">
-                                    Ep {anime.next_ep} in {cd}
-                                </div>
-                            )}
+                            
                             <div class="absolute bottom-0 left-0 p-5 w-full text-white">
                                 <h3 class="text-lg font-black uppercase leading-tight line-clamp-2">{getTitle(anime)}</h3>
                                 <p class="text-[10px] text-gray-400 mt-2 font-bold tracking-widest uppercase block">{getMetadataTag(anime)}</p>
                             </div>
                         </a>
-                    )})}
+                    ))}
                 </div>
             </section>
         )}
@@ -308,4 +348,19 @@ const getMetadataTag = (anime) => `${(anime?.format || 'TV').replace("TV_SHORT",
       });
     }
   });
+
+    // Birthday Scroll Logic
+    const bdayScroll = document.getElementById('bday-scroll');
+    const bdayLeft = document.getElementById('bday-left');
+    const bdayRight = document.getElementById('bday-right');
+
+    if (bdayScroll && bdayLeft && bdayRight) {
+      const bdayScrollAmount = 244; // Card width (224px) + gap (20px)
+      bdayLeft.addEventListener('click', () => {
+        bdayScroll.scrollBy({ left: -bdayScrollAmount, behavior: 'smooth' });
+      });
+      bdayRight.addEventListener('click', () => {
+        bdayScroll.scrollBy({ left: bdayScrollAmount, behavior: 'smooth' });
+      });
+    }
 </script>

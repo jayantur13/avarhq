@@ -50,7 +50,7 @@ let pinnedPosts = [];
 let regularPosts = [];
 
 try {
-  const token =  import.meta.env.DISCUSS || import.meta.env.GITHUB_TOKEN;
+  const token =  import.meta.env.DISCUSS;
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
